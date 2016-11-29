@@ -5,8 +5,6 @@
  */
 package Ventanas.Inventario;
 
-import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -27,5 +27,6 @@ class AccesoBD {
     protected static final String COMANDO_WHERE = " WHERE ";
     protected static final String COMANDO_UPDATE = " UPDATE ";
     protected static final String COMANDO_SET = " SET ";
+    protected static final String COMANDO_ALL = "*";
     
 }

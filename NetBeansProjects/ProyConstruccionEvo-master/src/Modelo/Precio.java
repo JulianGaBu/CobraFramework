@@ -26,5 +26,8 @@ public class Precio {
         this.precio = precio;
     }
     
-    
+    public double getLimiteOperacion(){
+        return LIMITE_OPERACION;
+    }
+        
 }

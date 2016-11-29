@@ -39,8 +39,5 @@ public class Proveedor {
     public String getDireccion( ) {
         return direccion;
     }
-    
-    
-    
-   
+      
 }

@@ -38,13 +38,11 @@ public class DetalleArticulo {
     }
 
     public void setPrecioCompra(Precio precioCompra) {
-        this.precioCompra = precioCompra;
+        precioCompra.setPrecio(precioCompra.getPrecio()+ precioCompra.getLimiteOperacion());
     }
 
     public void setPrecioVenta(Precio precioVenta) {
-        this.precioVenta = precioVenta;
+        precioVenta.setPrecio(precioVenta.getPrecio()+ precioVenta.getLimiteOperacion());
     }
-    
-    
-    
+        
 }

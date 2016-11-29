@@ -45,13 +45,13 @@ public class VentanaInventario extends JFrame {
         pack();
     }
     
-     private static void generarVentanaVerInventario( ){
+    private static void generarVentanaInventario( ){
         ventanaInventario = new VentanaInventario();
     }
     
     public static VentanaInventario obtenerVentanaVerInventario( ){
         if( ventanaInventario== null ){
-             generarVentanaVerInventario();
+             generarVentanaInventario();
         }
         ventanaInventario.setVisible(true);
         return ventanaInventario;

@@ -6,7 +6,6 @@
 package ControladoresVentanas;
 
 import Ventanas.VentanaPrincipal;
-import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,10 +25,10 @@ public class ControladorVentanaPrincipal {
     }
     
     public void inicializarVentanaPrincipal() {
-        eventoBotonAgregarArticulo();
-        eventoBotonVerInventario();
-        eventoBotonVerProveedores();
-        eventoBotonAgregarProveedor();
+        agregarEventoBotonAgregarArticulo();
+        agregarEventoBotonVerInventario();
+        agregarEventoVerProveedores();
+        agregarEventoBotonAgregarProveedor();
     }
     
     private static void generarControladorVentanaPrincipal( ){
@@ -44,8 +43,9 @@ public class ControladorVentanaPrincipal {
         return controladorVentanaPrincipal;
     }
 
-    public void eventoBotonVerInventario() {
+    public void agregarEventoBotonVerInventario() {
         JMenuItem botonVerInventario = ventanaPrincipal.getMenuItemVerInventario();
+        
         botonVerInventario.addActionListener((java.awt.event.ActionEvent evt) -> {
             try {
                 inicializarPanelVerInventario();
@@ -53,19 +53,23 @@ public class ControladorVentanaPrincipal {
                 Logger.getLogger(ControladorVentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
         ventanaPrincipal.setMenuItemVerInventario(botonVerInventario);
     }
 
-    public void eventoBotonAgregarArticulo() {
+    public void agregarEventoBotonAgregarArticulo() {
         JMenuItem botonAgregarArticulo = ventanaPrincipal.getMenuItemAgregarArticulo();
+        
         botonAgregarArticulo.addActionListener((java.awt.event.ActionEvent evt) -> {
             inicializarPanelAgregarArticulo();
         });
+        
         ventanaPrincipal.setMenuItemAgregarArticulo(botonAgregarArticulo);
     }
 
-    public void eventoBotonVerProveedores() {
+    public void agregarEventoVerProveedores() {
         JMenuItem botonVerProveedores = ventanaPrincipal.getMenuItemVerProveedores();
+        
         botonVerProveedores.addActionListener((java.awt.event.ActionEvent evt) -> {
             try {
                 inicializarPanelVerProveedores();
@@ -73,45 +77,42 @@ public class ControladorVentanaPrincipal {
                 Logger.getLogger(ControladorVentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
         ventanaPrincipal.setMenuItemVerProveedores(botonVerProveedores);
     }
 
-    public void eventoBotonAgregarProveedor() {
+    public void agregarEventoBotonAgregarProveedor() {
         JMenuItem botonAgregarProveedor = ventanaPrincipal.getMenuItemAgregarProveedor();
+        
         botonAgregarProveedor.addActionListener((java.awt.event.ActionEvent evt) -> {
             inicializarPanelAgregarProveedores();
         });
+        
         ventanaPrincipal.setMenuItemAgregarProveedor(botonAgregarProveedor);
     }
 
-//    public void agregarReceptorEventoBotonVerVentas( ){
-//        JMenuItem botonVerVentar = ventanaPrincipal.getMenuItemVerVentas();
-//        botonVerVentar.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
-//            clickVerVentas( evt );
-//        });
-//        ventanaPrincipal.setMenuItemVerVentas(botonVerVentar);
-//    }
-//    
-//    public void agregarReceptorEventoBotonRealizarVenta( ){
-//        JMenuItem botonRealizarVenta = ventanaPrincipal.getMenuItemRealizarVenta();
-//        botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
-//            clickRealizarVenta( evt );
-//        });
-//    }
-//    private void clickVerVentas( ActionEvent evt ){
-//        inicializarPanelVerVentas();
-//    }
-//    
-//    private void clickRealizarVenta( ActionEvent evt ){
-//        inicializarPanelRealizarVentas();
-//    }
-//    
+    public void agregarReceptorEventoBotonVerVentas( ){
+        JMenuItem botonVerVentas = ventanaPrincipal.getMenuItemVerVentas();
+        botonVerVentas.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelVerVentas();
+        });
+        ventanaPrincipal.setMenuItemVerVentas(botonVerVentas);
+    }
+    
+    public void agregarReceptorEventoBotonRealizarVenta( ){
+        JMenuItem botonRealizarVenta = ventanaPrincipal.getMenuItemRealizarVenta();
+        botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelVerVentas();
+        });
+    }
+
+    
     private void inicializarPanelVerInventario() throws SQLException {
 
         ControladorVentanaInventario.obtenerControladorVentanaInventario().mostrarPanelVerInventario();
-        ControladorVentanaInventario.obtenerControladorVentanaInventario().eventoBotonBuscarArticulo();
-        ControladorVentanaInventario.obtenerControladorVentanaInventario().eventoBotonEliminarArticulo();
-        ControladorVentanaInventario.obtenerControladorVentanaInventario().eventoBotonActualizarArticulo();
+        ControladorVentanaInventario.obtenerControladorVentanaInventario().agregarEventoBotonBuscarArticulo();
+        ControladorVentanaInventario.obtenerControladorVentanaInventario().agregarEventoBotonEliminarArticulo();
+        ControladorVentanaInventario.obtenerControladorVentanaInventario().agregarEventoBotonActualizarArticulo();
 
     }
 
@@ -122,29 +123,20 @@ public class ControladorVentanaPrincipal {
     private void inicializarPanelVerProveedores() throws SQLException {
 
         ControladorVentanaProveedores.obtenerControladorVentanaInventario().mostrarPanelVerProveedores();
-        ControladorVentanaProveedores.obtenerControladorVentanaInventario().eventoBotonBuscarProveedor();
-        ControladorVentanaProveedores.obtenerControladorVentanaInventario().eventoBotonEliminarProveedor();
-        ControladorVentanaProveedores.obtenerControladorVentanaInventario().eventoBotonActualizarProveedor();
+        ControladorVentanaProveedores.obtenerControladorVentanaInventario().agregarEventoBotonBuscarProveedor();
+        ControladorVentanaProveedores.obtenerControladorVentanaInventario().agregarEventoBotonEliminarProveedor();
+        ControladorVentanaProveedores.obtenerControladorVentanaInventario().agregarEventoBotonActualizarProveedor();
     }
 
     private void inicializarPanelAgregarProveedores() {
         ControladorVentanaProveedores.obtenerControladorVentanaInventario().mostrarPanelAgregarProveedor();
     }
 
-//     private void inicializarPanelVerVentas( ){
-//        
-//     }
-//     
-//     private void inicializarPanelRealizarVentas( ){
-//         if( ventanaVentas == null ){
-//             ventanaVentas = new VentanaVentas( );
-//             ventanaVentas.setVisible( true );
-//             ventanaVentas.mostrarPanelRealizarVentas( );
-//         }
-//         else{
-//             ventanaVentas.setVisible( true );
-//             ventanaVentas.mostrarPanelRealizarVentas( );
-//         }
-//
-//     }
+     private void inicializarPanelVerVentas( ){
+        
+     }
+     
+     private void inicializarPanelRealizarVentas( ){
+
+     }
 }

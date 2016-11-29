@@ -30,11 +30,11 @@ public class AccesoBDInventario extends AccesoBD {
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion( );
  
-         consultaBD =  COMANDO_SELECT + "*" + COMANDO_FROM + "articulo";
+         consultaBD =  COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "articulo";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaArticulos = sentenciaConsulta.executeQuery( consultaBD );
          
-         consultaBD =  COMANDO_SELECT + "*" + COMANDO_FROM + "detallearticulo";
+         consultaBD =  COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "detallearticulo";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaDetalleArticulos = sentenciaConsulta.executeQuery( consultaBD );
          
@@ -100,14 +100,14 @@ public class AccesoBDInventario extends AccesoBD {
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion( );
         
-         consultaBD = COMANDO_SELECT + "*" + COMANDO_FROM + "articulo" + COMANDO_WHERE + CLAVE_ARTICULO + "= \"" + claveArticulo + "\"";
+         consultaBD = COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "articulo" + COMANDO_WHERE + CLAVE_ARTICULO + "= \"" + claveArticulo + "\"";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaArticulos = sentenciaConsulta.executeQuery( consultaBD );
          
          //Omite el primero elemento del ResultSet el cual es una dirección de memoria
          resultadoConsultaArticulos.next( );
          
-         consultaBD =  COMANDO_SELECT + "*" + COMANDO_FROM + "detallearticulo" + COMANDO_WHERE + CLAVE_ARTICULO + "= \"" +
+         consultaBD =  COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "detallearticulo" + COMANDO_WHERE + CLAVE_ARTICULO + "= \"" +
                  claveArticulo + "\"";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaDetalleArticulos = sentenciaConsulta.executeQuery( consultaBD );

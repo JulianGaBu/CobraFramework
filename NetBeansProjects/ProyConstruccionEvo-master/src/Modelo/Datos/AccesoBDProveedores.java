@@ -25,7 +25,7 @@ public class AccesoBDProveedores extends AccesoBD {
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion( );
 
-         consultaBD = COMANDO_SELECT + "*" + COMANDO_FROM + "proveedores";
+         consultaBD = COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "proveedores";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaBD = sentenciaConsulta.executeQuery( consultaBD );
         
@@ -75,7 +75,7 @@ public class AccesoBDProveedores extends AccesoBD {
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion();
         
-         consultaBD = COMANDO_SELECT + "*" + COMANDO_FROM + "proveedores" + COMANDO_WHERE + CLAVE + " = \"" + claveProveedor + "\"";
+         consultaBD = COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + "proveedores" + COMANDO_WHERE + CLAVE + " = \"" + claveProveedor + "\"";
          sentenciaConsulta = conexionBD.createStatement( );
          ResultSet resultadoConsultaBD = sentenciaConsulta.executeQuery(consultaBD);
         

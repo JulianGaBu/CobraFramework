@@ -14,11 +14,11 @@ import javax.swing.JFrame;
 public class VentanaProveedores extends JFrame {
     
     private static VentanaProveedores ventanaProveedores = null;
-    private PanelActualizarProveedor panelActualizarProveedor;
-    private PanelAgregarProveedor panelAgregarProveedor;
-    private PanelBuscarProveedor panelBuscarProveedor;
-    private PanelVerProveedores panelVerProveedores;
-    private PanelEliminarProveedor panelEliminarProveedor;
+    private final PanelActualizarProveedor panelActualizarProveedor;
+    private final PanelAgregarProveedor panelAgregarProveedor;
+    private final PanelBuscarProveedor panelBuscarProveedor;
+    private final PanelVerProveedores panelVerProveedores;
+    private final PanelEliminarProveedor panelEliminarProveedor;
     
     private VentanaProveedores(){
         panelActualizarProveedor = new PanelActualizarProveedor();
@@ -53,6 +53,7 @@ public class VentanaProveedores extends JFrame {
              generarVentanaProveedores();
         }
         ventanaProveedores.setVisible(true);
+        
         return ventanaProveedores;
     }
         
