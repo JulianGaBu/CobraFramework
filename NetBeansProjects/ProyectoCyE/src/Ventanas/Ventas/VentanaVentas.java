@@ -13,15 +13,15 @@ import javax.swing.JFrame;
  */
 public class VentanaVentas extends JFrame {
     
-    PanelRealizarVenta panelRealizarVentas;
+    PanelRealizarVenta panelRealizarVenta;
     PanelVerVentas panelVerVentas;
     
     public VentanaVentas() {
         
-        panelRealizarVentas = new PanelRealizarVenta();
+        panelRealizarVenta = new PanelRealizarVenta();
         panelVerVentas = new PanelVerVentas();
         
-        setTitle("Inventario");
+        setTitle("Ventas");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -38,5 +38,54 @@ public class VentanaVentas extends JFrame {
 
         pack();
     }
+    
+    public void mostrarPanelRealizarVenta(){
+         javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
+        getContentPane( ).setLayout( layout );
+        layout.setHorizontalGroup(
+            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
+            .addGroup( layout.createSequentialGroup( )
+                .addComponent( panelRealizarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
+                .addContainerGap( 280, Short.MAX_VALUE) )
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
+            .addGroup( layout.createSequentialGroup( )
+                .addComponent( panelRealizarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
+                .addContainerGap( 237, Short.MAX_VALUE) )
+        );
+    }
+    
+    public void mostrarPenalVerVentas(){
+         javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
+        getContentPane( ).setLayout( layout );
+        layout.setHorizontalGroup(
+            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
+            .addGroup( layout.createSequentialGroup( )
+                .addComponent(panelVerVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
+                .addContainerGap( 280, Short.MAX_VALUE) )
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
+            .addGroup( layout.createSequentialGroup( )
+                .addComponent(panelVerVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
+                .addContainerGap( 237, Short.MAX_VALUE) )
+        );
+        
+    }
+
+    public PanelRealizarVenta getPanelRealizarVenta() {
+        return panelRealizarVenta;
+    }
+
+    public PanelVerVentas getPanelVerVentas() {
+        return panelVerVentas;
+    }
+    
+    
     
 }

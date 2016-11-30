@@ -6,7 +6,6 @@
 package Controladores;
 
 import Ventanas.VentanaPrincipal;
-import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +20,7 @@ public class ControladorVentanaPrincipal {
     private VentanaPrincipal ventanaPrincipal;
     private ControladorVentanaInventario controladorVentanaInventario;
     private ControladorVentanaProveedores controladorVentanaProveedores;
+    private ControladorVentanaVentas controladorVentanaVentas;
 
     public void inicializarVentanaPrincipal() {
         ventanaPrincipal = new VentanaPrincipal();
@@ -29,6 +29,8 @@ public class ControladorVentanaPrincipal {
         agregarReceptorEventoBotonVerInventario();
         agregarReceptorEventoBotonVerProveedores();
         agregarReceptorEventoBotonAgregarProveedor();
+        agregarReceptorEventoBotonVerVentas();
+        agregarReceptorEventoBotonRealizarVenta();
     }
 
     public void agregarReceptorEventoBotonVerInventario() {
@@ -71,32 +73,26 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemAgregarProveedor(botonAgregarProveedor);
     }
 
-//    public void agregarReceptorEventoBotonVerVentas( ){
-//        JMenuItem botonVerVentar = ventanaPrincipal.getMenuItemVerVentas();
-//        botonVerVentar.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
-//            clickVerVentas( evt );
-//        });
-//        ventanaPrincipal.setMenuItemVerVentas(botonVerVentar);
-//    }
-//    
-//    public void agregarReceptorEventoBotonRealizarVenta( ){
-//        JMenuItem botonRealizarVenta = ventanaPrincipal.getMenuItemRealizarVenta();
-//        botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
-//            clickRealizarVenta( evt );
-//        });
-//    }
-//    private void clickVerVentas( ActionEvent evt ){
-//        inicializarPanelVerVentas();
-//    }
-//    
-//    private void clickRealizarVenta( ActionEvent evt ){
-//        inicializarPanelRealizarVentas();
-//    }
-//    
+    public void agregarReceptorEventoBotonVerVentas( ){
+        JMenuItem botonVerVentar = ventanaPrincipal.getMenuItemVerVentas();
+        botonVerVentar.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelVerVentas();
+        });
+        ventanaPrincipal.setMenuItemVerVentas(botonVerVentar);
+    }
+    
+    public void agregarReceptorEventoBotonRealizarVenta( ){
+        JMenuItem botonRealizarVenta = ventanaPrincipal.getMenuItemRealizarVenta();
+        botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelRealizarVenta();
+        });
+    }
+
+    
     private void inicializarPanelVerInventario() throws SQLException {
         controladorVentanaInventario = new ControladorVentanaInventario();
 
-        controladorVentanaInventario.mostrarPanelVerInventario();
+        controladorVentanaInventario.desplegarPanelVerInventario();
         controladorVentanaInventario.agregarReceptorEventoBotonBuscarArticulo();
         controladorVentanaInventario.agregarReceptorEventoBotonEliminarArticulo();
         controladorVentanaInventario.agregarReceptorEventoBotonActualizarArticulo();
@@ -105,13 +101,13 @@ public class ControladorVentanaPrincipal {
 
     private void inicializarPanelAgregarArticulo() {
         controladorVentanaInventario = new ControladorVentanaInventario();
-        controladorVentanaInventario.mostrarPanelAgregarArticulo();
+        controladorVentanaInventario.desplegarPanelAgregarArticulo();
     }
 
     private void inicializarPanelVerProveedores() throws SQLException {
         controladorVentanaProveedores = new ControladorVentanaProveedores();
 
-        controladorVentanaProveedores.mostrarPanelVerProveedores();
+        controladorVentanaProveedores.desplegarPanelVerProveedores();
         controladorVentanaProveedores.agregarReceptorEventoBotonBuscarProveedor();
         controladorVentanaProveedores.agregarReceptorEventoBotonEliminarProveedor();
         controladorVentanaProveedores.agregarReceptorEventoBotonActualizarProveedor();
@@ -119,23 +115,16 @@ public class ControladorVentanaPrincipal {
 
     private void inicializarPanelAgregarProveedores() {
         controladorVentanaProveedores = new ControladorVentanaProveedores();
-        controladorVentanaProveedores.mostrarPanelAgregarProveedor();
+        controladorVentanaProveedores.desplegarPanelAgregarProveedor();
     }
 
-//     private void inicializarPanelVerVentas( ){
-//        
-//     }
-//     
-//     private void inicializarPanelRealizarVentas( ){
-//         if( ventanaVentas == null ){
-//             ventanaVentas = new VentanaVentas( );
-//             ventanaVentas.setVisible( true );
-//             ventanaVentas.mostrarPanelRealizarVentas( );
-//         }
-//         else{
-//             ventanaVentas.setVisible( true );
-//             ventanaVentas.mostrarPanelRealizarVentas( );
-//         }
-//
-//     }
+     private void inicializarPanelVerVentas( ){
+        controladorVentanaVentas = new ControladorVentanaVentas();
+        controladorVentanaVentas.desplegarPanelVerVentas();
+     }
+     
+     private void inicializarPanelRealizarVenta( ){
+        controladorVentanaVentas = new ControladorVentanaVentas();
+        controladorVentanaVentas.desplegarPanelRealizarVenta();
+     }
 }

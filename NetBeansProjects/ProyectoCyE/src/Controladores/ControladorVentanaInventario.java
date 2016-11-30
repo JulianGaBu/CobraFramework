@@ -43,7 +43,7 @@ public class ControladorVentanaInventario {
         inicializarVentana();
     }
 
-    void mostrarPanelVerInventario() throws SQLException {
+    void desplegarPanelVerInventario() throws SQLException {
         panelVerInventario = ventanaInventario.getPanelVerInventario();
         ventanaInventario.mostrarPanelVerInventario();
 
@@ -55,7 +55,7 @@ public class ControladorVentanaInventario {
         }
     }
 
-    void mostrarPanelAgregarArticulo() {
+    void desplegarPanelAgregarArticulo() {
         panelAgregarArticulo = ventanaInventario.getPanelAgregarArticulo();
         ventanaInventario.mostrarPanelAgregarArticulo();
         agregarReceptorEventoBotonAgregarArticulo();

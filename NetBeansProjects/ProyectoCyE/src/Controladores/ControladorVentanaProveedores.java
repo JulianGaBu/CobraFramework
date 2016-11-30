@@ -42,7 +42,7 @@ public class ControladorVentanaProveedores {
         inicializarVentana();
     }
 
-    void mostrarPanelVerProveedores() throws SQLException {
+    void desplegarPanelVerProveedores() throws SQLException {
         panelVerProveedores = ventanaProveedores.getPanelVerProveedores();
         ventanaProveedores.mostrarPanelVerProveedores();
 
@@ -54,7 +54,7 @@ public class ControladorVentanaProveedores {
         }
     }
 
-    void mostrarPanelAgregarProveedor() {
+    void desplegarPanelAgregarProveedor() {
         panelAgregarProveedor = ventanaProveedores.getPanelAgregarProveedor();
         ventanaProveedores.mostrarPanelAgregarProveedor();
         agregarReceptorEventoBotonAgregarProveedor();
