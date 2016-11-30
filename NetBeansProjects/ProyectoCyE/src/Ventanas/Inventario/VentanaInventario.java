@@ -49,23 +49,19 @@ public class VentanaInventario extends JFrame {
     
     public void mostrarPanelAgregarArticulo( ) {
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addGap( 94, 94, 94 )
-                .addComponent( panelAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 176, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 492, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addContainerGap( )
-                .addComponent( panelAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap(193, Short.MAX_VALUE) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 208, Short.MAX_VALUE))
         );
     }
     
@@ -76,7 +72,7 @@ public class VentanaInventario extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
             .addGroup( layout.createSequentialGroup( )
-                .addComponent( panelVerInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                .addComponent(panelVerInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 
                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
                 .addContainerGap( 280, Short.MAX_VALUE) )
         );
@@ -93,23 +89,21 @@ public class VentanaInventario extends JFrame {
     public void mostrarPanelBuscarArticulo( ){
         panelBuscarArticulo.setVisible(true);
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup( )
-                .addContainerGap( 235, Short.MAX_VALUE )
-                .addComponent( panelBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        244, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addGap( 43, 43, 43) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(566, Short.MAX_VALUE)
+                .addComponent(panelBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addContainerGap( )
-                .addComponent( panelBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        394, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 216, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(panelBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
      }
     
@@ -140,23 +134,20 @@ public class VentanaInventario extends JFrame {
     public void mostrarPanelActualizarArticulo(  ){
         panelActualizarArticulo.setVisible(true);
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup( )
-                .addContainerGap( 465, Short.MAX_VALUE )
-                .addComponent( panelActualizarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(456, Short.MAX_VALUE)
+                .addComponent(panelActualizarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addGap( 38, 38, 38 )
-                .addComponent( panelActualizarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 103, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelActualizarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 202, Short.MAX_VALUE))
         );
      }
 

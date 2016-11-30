@@ -47,23 +47,19 @@ public class VentanaProveedores extends JFrame {
         
     public void mostrarPanelAgregarProveedor( ){
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addGap( 94, 94, 94 )
-                .addComponent( panelAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 176, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 492, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addContainerGap( )
-                .addComponent( panelAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 193, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 208, Short.MAX_VALUE))
         );
      }
     
@@ -80,7 +76,7 @@ public class VentanaProveedores extends JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
             .addGroup( layout.createSequentialGroup( )
-                .addComponent(panelVerProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 
+                .addComponent( panelVerProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 
                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
                 .addContainerGap( 237, Short.MAX_VALUE) )
         );
@@ -89,24 +85,22 @@ public class VentanaProveedores extends JFrame {
     
     public void mostrarPanelBuscarProveedor( ){
         panelBuscarProveedor.setVisible(true);
-        
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+                
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup( )
-                .addContainerGap( 235, Short.MAX_VALUE )
-                .addComponent( panelBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 244, 
-                        javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addGap( 43, 43, 43) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(566, Short.MAX_VALUE)
+                .addComponent(panelBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addContainerGap( )
-                .addComponent( panelBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 394, 
-                        javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 216, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(panelBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
      }
     
@@ -118,7 +112,7 @@ public class VentanaProveedores extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
             .addGroup( layout.createSequentialGroup( )
-                .addGap( 26, 26, 26 )
+                .addGap (26, 26, 26 )
                 .addComponent( panelEliminarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
                 .addContainerGap( 282, Short.MAX_VALUE ) )
@@ -126,7 +120,7 @@ public class VentanaProveedores extends JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
             .addGroup( javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup( )
-                .addContainerGap( 342, Short.MAX_VALUE )
+                .addContainerGap (342, Short.MAX_VALUE )
                 .addComponent( panelEliminarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
                 .addGap( 27, 27, 27 ) )
@@ -136,23 +130,20 @@ public class VentanaProveedores extends JFrame {
     public void mostrarPanelActualizarProveedor( ){
         panelActualizarProveedor.setVisible(true);
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane( ) );
-        getContentPane( ).setLayout( layout );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup( )
-                .addContainerGap( 465, Short.MAX_VALUE )
-                .addComponent( panelActualizarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(456, Short.MAX_VALUE)
+                .addComponent(panelActualizarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING )
-            .addGroup( layout.createSequentialGroup( )
-                .addGap( 38, 38, 38 )
-                .addComponent( panelActualizarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 
-                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE )
-                .addContainerGap( 103, Short.MAX_VALUE ) )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelActualizarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 202, Short.MAX_VALUE))
         ); 
      }
 
