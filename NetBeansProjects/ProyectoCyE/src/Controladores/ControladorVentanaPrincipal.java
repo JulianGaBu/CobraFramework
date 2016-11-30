@@ -25,15 +25,15 @@ public class ControladorVentanaPrincipal {
     public void inicializarVentanaPrincipal() {
         ventanaPrincipal = new VentanaPrincipal();
         ventanaPrincipal.setVisible(true);
-        agregarReceptorEventoBotonAgregarArticulo();
-        agregarReceptorEventoBotonVerInventario();
-        agregarReceptorEventoBotonVerProveedores();
-        agregarReceptorEventoBotonAgregarProveedor();
-        agregarReceptorEventoBotonVerVentas();
-        agregarReceptorEventoBotonRealizarVenta();
+        agregarEventoBotonAgregarArticulo();
+        agregarEventoBotonVerInventario();
+        agregarEventoBotonVerProveedores();
+        agregarEventoBotonAgregarProveedor();
+        agregarEventoBotonVerVentas();
+        agregarEventoBotonRealizarVenta();
     }
 
-    public void agregarReceptorEventoBotonVerInventario() {
+    public void agregarEventoBotonVerInventario() {
         JMenuItem botonVerInventario = ventanaPrincipal.getMenuItemVerInventario();
         botonVerInventario.addActionListener((java.awt.event.ActionEvent evt) -> {
             try {
@@ -45,7 +45,7 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemVerInventario(botonVerInventario);
     }
 
-    public void agregarReceptorEventoBotonAgregarArticulo() {
+    public void agregarEventoBotonAgregarArticulo() {
         JMenuItem botonAgregarArticulo = ventanaPrincipal.getMenuItemAgregarArticulo();
         botonAgregarArticulo.addActionListener((java.awt.event.ActionEvent evt) -> {
             inicializarPanelAgregarArticulo();
@@ -53,7 +53,7 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemAgregarArticulo(botonAgregarArticulo);
     }
 
-    public void agregarReceptorEventoBotonVerProveedores() {
+    public void agregarEventoBotonVerProveedores() {
         JMenuItem botonVerProveedores = ventanaPrincipal.getMenuItemVerProveedores();
         botonVerProveedores.addActionListener((java.awt.event.ActionEvent evt) -> {
             try {
@@ -65,7 +65,7 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemVerProveedores(botonVerProveedores);
     }
 
-    public void agregarReceptorEventoBotonAgregarProveedor() {
+    public void agregarEventoBotonAgregarProveedor() {
         JMenuItem botonAgregarProveedor = ventanaPrincipal.getMenuItemAgregarProveedor();
         botonAgregarProveedor.addActionListener((java.awt.event.ActionEvent evt) -> {
             inicializarPanelAgregarProveedores();
@@ -73,7 +73,7 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemAgregarProveedor(botonAgregarProveedor);
     }
 
-    public void agregarReceptorEventoBotonVerVentas( ){
+    public void agregarEventoBotonVerVentas( ){
         JMenuItem botonVerVentar = ventanaPrincipal.getMenuItemVerVentas();
         botonVerVentar.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
             inicializarPanelVerVentas();
@@ -81,7 +81,7 @@ public class ControladorVentanaPrincipal {
         ventanaPrincipal.setMenuItemVerVentas(botonVerVentar);
     }
     
-    public void agregarReceptorEventoBotonRealizarVenta( ){
+    public void agregarEventoBotonRealizarVenta( ){
         JMenuItem botonRealizarVenta = ventanaPrincipal.getMenuItemRealizarVenta();
         botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
             inicializarPanelRealizarVenta();
@@ -93,9 +93,9 @@ public class ControladorVentanaPrincipal {
         controladorVentanaInventario = new ControladorVentanaInventario();
 
         controladorVentanaInventario.desplegarPanelVerInventario();
-        controladorVentanaInventario.agregarReceptorEventoBotonBuscarArticulo();
-        controladorVentanaInventario.agregarReceptorEventoBotonEliminarArticulo();
-        controladorVentanaInventario.agregarReceptorEventoBotonActualizarArticulo();
+        controladorVentanaInventario.agregarEventoBotonBuscarArticulo();
+        controladorVentanaInventario.agregarEventoBotonEliminarArticulo();
+        controladorVentanaInventario.agregarEventoBotonActualizarArticulo();
 
     }
 
@@ -108,9 +108,9 @@ public class ControladorVentanaPrincipal {
         controladorVentanaProveedores = new ControladorVentanaProveedores();
 
         controladorVentanaProveedores.desplegarPanelVerProveedores();
-        controladorVentanaProveedores.agregarReceptorEventoBotonBuscarProveedor();
-        controladorVentanaProveedores.agregarReceptorEventoBotonEliminarProveedor();
-        controladorVentanaProveedores.agregarReceptorEventoBotonActualizarProveedor();
+        controladorVentanaProveedores.agregarEventoBotonBuscarProveedor();
+        controladorVentanaProveedores.agregarEventoBotonEliminarProveedor();
+        controladorVentanaProveedores.agregarEventoBotonActualizarProveedor();
     }
 
     private void inicializarPanelAgregarProveedores() {
@@ -126,5 +126,7 @@ public class ControladorVentanaPrincipal {
      private void inicializarPanelRealizarVenta( ){
         controladorVentanaVentas = new ControladorVentanaVentas();
         controladorVentanaVentas.desplegarPanelRealizarVenta();
+        controladorVentanaVentas.agregarEventoBotonAgregarAlCarrito();
+        controladorVentanaVentas.agregarEventoBotonEliminarDelCarrito();
      }
 }

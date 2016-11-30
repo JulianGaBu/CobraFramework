@@ -48,7 +48,7 @@ public class ControladorVentanaProveedores {
 
         try {
             obtenerProveedoresBD();
-            generarTablaProveedores(proveedores);
+            llenarTablaProveedores(proveedores);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ControladorVentanaInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,8 +57,8 @@ public class ControladorVentanaProveedores {
     void desplegarPanelAgregarProveedor() {
         panelAgregarProveedor = ventanaProveedores.getPanelAgregarProveedor();
         ventanaProveedores.mostrarPanelAgregarProveedor();
-        agregarReceptorEventoBotonAgregarProveedor();
-        agregarReceptorEventoBotonCancelarAgregacion();
+        agregarEventoBotonAgregarProveedor();
+        agregarEventoBotonCancelarAgregacion();
 
     }
     
@@ -67,7 +67,7 @@ public class ControladorVentanaProveedores {
         proveedores = admin.obtenerDatos();
     }
 
-    private void generarTablaProveedores(ArrayList<Proveedor> proveedores) throws SQLException, ClassNotFoundException {
+    private void llenarTablaProveedores(ArrayList<Proveedor> proveedores) throws SQLException, ClassNotFoundException {
         for (int numProveedor = 0; numProveedor < proveedores.size(); numProveedor++) {
             panelVerProveedores.getContenidoTablaProveedores().addRow(new Object[]{proveedores.get(numProveedor).getClave(),
                 proveedores.get(numProveedor).getNombre(),
@@ -79,14 +79,14 @@ public class ControladorVentanaProveedores {
     private void actualizarTablaProveedores() throws SQLException, ClassNotFoundException {
         borrarContenidoTablaArticulos();
         obtenerProveedoresBD();
-        generarTablaProveedores(proveedores);
+        llenarTablaProveedores(proveedores);
     }
     
     private void borrarContenidoTablaArticulos(){
         panelVerProveedores.getContenidoTablaProveedores().setRowCount(0);
     }
 
-    void agregarReceptorEventoBotonBuscarProveedor() {
+    void agregarEventoBotonBuscarProveedor() {
         panelVerProveedores = ventanaProveedores.getPanelVerProveedores();
         JButton botonBuscar = panelVerProveedores.getBotonBuscar();
 
@@ -94,14 +94,14 @@ public class ControladorVentanaProveedores {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaProveedores.mostrarPanelBuscarProveedor();
-                agregarReceptorEventoBotonBuscar();
-                agregarReceptorEventoBotonCancelarBusqueda();
+                agregarEventoBotonBuscar();
+                agregarEventoBotonCancelarBusqueda();
             }
         });
         panelVerProveedores.setBotonBuscar(botonBuscar);
     }
 
-    void agregarReceptorEventoBotonEliminarProveedor() {
+    void agregarEventoBotonEliminarProveedor() {
         panelVerProveedores = ventanaProveedores.getPanelVerProveedores();
         JButton botonEliminar = panelVerProveedores.getBotonEliminar();
 
@@ -109,14 +109,14 @@ public class ControladorVentanaProveedores {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaProveedores.mostrarPanelEliminarProveedor();
-                agregarReceptorEventoBotonEliminar();
-                agregarReceptorEventoBotonCancelarEliminacion();
+                agregarEventoBotonEliminar();
+                agregarEventoBotonCancelarEliminacion();
             }
         });
         panelVerProveedores.setBotonEliminar(botonEliminar);
     }
 
-    void agregarReceptorEventoBotonActualizarProveedor() {
+    void agregarEventoBotonActualizarProveedor() {
         panelVerProveedores = ventanaProveedores.getPanelVerProveedores();
         JButton botonActualizar = panelVerProveedores.getBotonActualizar();
 
@@ -124,14 +124,14 @@ public class ControladorVentanaProveedores {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaProveedores.mostrarPanelActualizarProveedor();
-                agregarReceptorEventoBotonActualizar();
-                agregarReceptorEventoBotonCancelarActualizacion();
+                agregarEventoBotonActualizar();
+                agregarEventoBotonCancelarActualizacion();
             }
         });
         panelVerProveedores.setBotonActualizar(botonActualizar);
     }
 
-    void agregarReceptorEventoBotonEliminar() {
+    void agregarEventoBotonEliminar() {
         panelEliminarProveedor = ventanaProveedores.getPanelEliminarProveedor();
         JButton botonEliminar = panelEliminarProveedor.getBotonEliminar();
 
@@ -158,7 +158,7 @@ public class ControladorVentanaProveedores {
         }
     }
 
-    private void agregarReceptorEventoBotonCancelarEliminacion() {
+    private void agregarEventoBotonCancelarEliminacion() {
         panelEliminarProveedor = ventanaProveedores.getPanelEliminarProveedor();
         JButton botonCancelarEliminacion = panelEliminarProveedor.getBotonCancelar();
 
@@ -171,18 +171,18 @@ public class ControladorVentanaProveedores {
         panelEliminarProveedor.setBotonCancelar(botonCancelarEliminacion);
     }
 
-    private void agregarReceptorEventoBotonAgregarProveedor() {
+    private void agregarEventoBotonAgregarProveedor() {
         panelAgregarProveedor = ventanaProveedores.getPanelAgregarProveedor();
         JButton botonAgregar = panelAgregarProveedor.getBotonAgregar();
         botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                agregarProveedor();
+                accionarBotonAgregarProveedor();
             }
         });
     }
 
-    private void agregarProveedor() {
+    private void accionarBotonAgregarProveedor() {
         String claveProveedor = panelAgregarProveedor.getCampoTextoClave().getText();
         String nombre = panelAgregarProveedor.getCampoTextoNombre().getText();
         String telefono = panelAgregarProveedor.getCampoTextoTel().getText();
@@ -201,7 +201,7 @@ public class ControladorVentanaProveedores {
         }
     }
 
-    private void agregarReceptorEventoBotonCancelarAgregacion() {
+    private void agregarEventoBotonCancelarAgregacion() {
         panelAgregarProveedor = ventanaProveedores.getPanelAgregarProveedor();
         JButton botonCancelar = panelAgregarProveedor.getBotonCancelar();
 
@@ -214,7 +214,7 @@ public class ControladorVentanaProveedores {
         panelAgregarProveedor.setBotonCancelar(botonCancelar);
     }
 
-    private void agregarReceptorEventoBotonBuscar() {
+    private void agregarEventoBotonBuscar() {
         panelBuscarProveedor = ventanaProveedores.getPanelBuscarProveedor();
         JButton botonBuscar = panelBuscarProveedor.getBotonBuscar();
 
@@ -244,7 +244,7 @@ public class ControladorVentanaProveedores {
         panelBuscarProveedor.setCampoTextoDireccion(proveedor.getDireccion());
     }
 
-    private void agregarReceptorEventoBotonCancelarBusqueda() {
+    private void agregarEventoBotonCancelarBusqueda() {
         panelBuscarProveedor = ventanaProveedores.getPanelBuscarProveedor();
         JButton botonCancelar = panelBuscarProveedor.getBotonCancelar();
 
@@ -257,7 +257,7 @@ public class ControladorVentanaProveedores {
         panelBuscarProveedor.setBotonCancelar(botonCancelar);
     }
 
-    private void agregarReceptorEventoBotonActualizar() {
+    private void agregarEventoBotonActualizar() {
         panelActualizarProveedor = ventanaProveedores.getPanelActualizarProveedor();
         JButton botonActualizar = panelActualizarProveedor.getBotonGuardarCambios();
         botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -294,7 +294,7 @@ public class ControladorVentanaProveedores {
         }
     }
 
-    private void agregarReceptorEventoBotonCancelarActualizacion() {
+    private void agregarEventoBotonCancelarActualizacion() {
         panelActualizarProveedor = ventanaProveedores.getPanelActualizarProveedor();
         JButton botonCancelar = panelActualizarProveedor.getBotonCancelar();
         botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {

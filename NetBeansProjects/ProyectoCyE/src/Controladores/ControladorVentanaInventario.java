@@ -49,7 +49,7 @@ public class ControladorVentanaInventario {
 
         try {
             obtenerArticulosBD();
-            generarTablaArticulos(articulos);
+            llenarTablaArticulos(articulos);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ControladorVentanaInventario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,8 +58,8 @@ public class ControladorVentanaInventario {
     void desplegarPanelAgregarArticulo() {
         panelAgregarArticulo = ventanaInventario.getPanelAgregarArticulo();
         ventanaInventario.mostrarPanelAgregarArticulo();
-        agregarReceptorEventoBotonAgregarArticulo();
-        agregarReceptorEventoBotonCancelarAgregacion();
+        agregarEventoBotonAgregarArticulo();
+        agregarEventoBotonCancelarAgregacion();
 
     }
     
@@ -68,7 +68,7 @@ public class ControladorVentanaInventario {
         articulos = admin.obtenerDatos();
     }
 
-    private void generarTablaArticulos(ArrayList<Articulo> articulos) throws SQLException, ClassNotFoundException {       
+    private void llenarTablaArticulos(ArrayList<Articulo> articulos) throws SQLException, ClassNotFoundException {       
         for (int numArticulo = 0; numArticulo < articulos.size(); numArticulo++) {
             panelVerInventario.getContenidoTablaArticulos().addRow(new Object[]{articulos.get(numArticulo).getClaveArticulo(),
                 articulos.get(numArticulo).getClaveProveedor(),
@@ -83,14 +83,14 @@ public class ControladorVentanaInventario {
     private void actualizarTablaArticulos() throws SQLException, ClassNotFoundException {
         borrarContenidoTablaArticulos();
         obtenerArticulosBD();
-        generarTablaArticulos(articulos);
+        llenarTablaArticulos(articulos);
     }
     
     private void borrarContenidoTablaArticulos(){
         panelVerInventario.getContenidoTablaArticulos().setRowCount(0);
     }
 
-    void agregarReceptorEventoBotonBuscarArticulo() {
+    void agregarEventoBotonBuscarArticulo() {
         panelVerInventario = ventanaInventario.getPanelVerInventario();
         JButton botonBuscar = panelVerInventario.getBotonBuscarArticulo();
 
@@ -98,14 +98,14 @@ public class ControladorVentanaInventario {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaInventario.mostrarPanelBuscarArticulo();
-                agregarReceptorEventoBotonBuscar();
-                agregarReceptorEventoBotonCancelarBusqueda();
+                agregarEventoBotonBuscar();
+                agregarEventoBotonCancelarBusqueda();
             }
         });
         panelVerInventario.setBotonBuscarArticulo(botonBuscar);
     }
 
-    void agregarReceptorEventoBotonEliminarArticulo() {
+    void agregarEventoBotonEliminarArticulo() {
         panelVerInventario = ventanaInventario.getPanelVerInventario();
         JButton botonEliminar = ventanaInventario.getPanelVerInventario().getBotonEliminarArticulo();
 
@@ -113,14 +113,14 @@ public class ControladorVentanaInventario {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaInventario.mostrarPanelEliminarArticulo();
-                agregarReceptorEventoBotonEliminar();
-                agregarReceptorEventoBotonCancelarEliminacion();
+                agregarEventoBotonEliminar();
+                agregarEventoBotonCancelarEliminacion();
             }
         });
         panelVerInventario.setBotonEliminarArticulo(botonEliminar);
     }
 
-    void agregarReceptorEventoBotonActualizarArticulo() {
+    void agregarEventoBotonActualizarArticulo() {
         panelVerInventario = ventanaInventario.getPanelVerInventario();
         JButton botonActualizar = panelVerInventario.getBotonActualizarArticulo();
 
@@ -128,14 +128,14 @@ public class ControladorVentanaInventario {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ventanaInventario.mostrarPanelActualizarArticulo();
-                agregarReceptorEventoBotonActualizar();
-                agregarReceptorEventoBotonCancelarActualizacion();
+                agregarEventoBotonActualizar();
+                agregarEventoBotonCancelarActualizacion();
             }
         });
         panelVerInventario.setBotonActualizarArticulo(botonActualizar);
     }
 
-    private void agregarReceptorEventoBotonEliminar() {
+    private void agregarEventoBotonEliminar() {
         panelEliminarArticulo = ventanaInventario.getPanelEliminarArticulo();
         JButton botonEliminar = panelEliminarArticulo.getBotonEliminar();
 
@@ -162,7 +162,7 @@ public class ControladorVentanaInventario {
         }
     }
 
-    private void agregarReceptorEventoBotonCancelarEliminacion() {
+    private void agregarEventoBotonCancelarEliminacion() {
         panelEliminarArticulo = ventanaInventario.getPanelEliminarArticulo();
         JButton botonCancelarEliminacion = panelEliminarArticulo.getBotonCancelar();
 
@@ -175,7 +175,7 @@ public class ControladorVentanaInventario {
         panelEliminarArticulo.setBotonCancelar(botonCancelarEliminacion);
     }
 
-    private void agregarReceptorEventoBotonAgregarArticulo() {
+    private void agregarEventoBotonAgregarArticulo() {
         panelAgregarArticulo = ventanaInventario.getPanelAgregarArticulo();
         JButton botonAgregar = panelAgregarArticulo.getBotonAgregarArticulo();
         botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +211,7 @@ public class ControladorVentanaInventario {
         }
     }
 
-    private void agregarReceptorEventoBotonCancelarAgregacion() {
+    private void agregarEventoBotonCancelarAgregacion() {
         panelAgregarArticulo = ventanaInventario.getPanelAgregarArticulo();
         JButton botonCancelar = panelAgregarArticulo.getBotonCancelar();
 
@@ -224,7 +224,7 @@ public class ControladorVentanaInventario {
         panelAgregarArticulo.setBotonCancelar(botonCancelar);
     }
 
-    private void agregarReceptorEventoBotonBuscar() {
+    private void agregarEventoBotonBuscar() {
         panelBuscarArticulo = ventanaInventario.getPanelBuscarArticulo();
         JButton botonBuscar = ventanaInventario.getPanelBuscarArticulo().getBotonBuscar();
 
@@ -257,7 +257,7 @@ public class ControladorVentanaInventario {
         panelBuscarArticulo.setCampoTextoPrecioVenta(String.valueOf(articulo.getDetalleArticulo().getPrecioVenta().getPrecio()));
     }
 
-    void agregarReceptorEventoBotonCancelarBusqueda() {
+    void agregarEventoBotonCancelarBusqueda() {
         panelBuscarArticulo = ventanaInventario.getPanelBuscarArticulo();
         JButton botonCancelar = panelBuscarArticulo.getBotonCancelar();
 
@@ -270,7 +270,7 @@ public class ControladorVentanaInventario {
         panelBuscarArticulo.setBotonCancelar(botonCancelar);
     }
 
-    void agregarReceptorEventoBotonActualizar() {
+    void agregarEventoBotonActualizar() {
         panelActualizarArticulo = ventanaInventario.getPanelActualizarArticulo();
         JButton botonActualizar = panelActualizarArticulo.getBotonGuardarCambios();
         botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -310,7 +310,7 @@ public class ControladorVentanaInventario {
         }
     }
 
-    void agregarReceptorEventoBotonCancelarActualizacion() {
+    void agregarEventoBotonCancelarActualizacion() {
         panelActualizarArticulo = ventanaInventario.getPanelActualizarArticulo();
         JButton botonCancelar = panelActualizarArticulo.getBotonCancelar();
         panelActualizarArticulo.getBotonCancelar().addMouseListener(new java.awt.event.MouseAdapter() {

@@ -5,7 +5,6 @@
  */
 package Modelo;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,8 +20,10 @@ public class Venta {
     private final ArrayList<Articulo> articulosVendidos;
     private final double montoVenta;
     private double ganancia;
-    private Calendar fecha;
-    
+    private final Calendar fecha;
+    private Cliente cliente;
+
+  
     public Venta(ArrayList<Articulo> articulosVendidos){
         this.articulosVendidos= articulosVendidos;
         this.fecha = new GregorianCalendar();
@@ -48,5 +49,10 @@ public class Venta {
     public Calendar getFecha() {
         return fecha;
     }
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
+    
        
 }
