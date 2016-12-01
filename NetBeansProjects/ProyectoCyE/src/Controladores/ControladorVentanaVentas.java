@@ -7,6 +7,7 @@ package Controladores;
 
 
 import Administradores.AdministradorInventario;
+import Administradores.AdministradorVentas;
 import Modelo.Articulo;
 import Modelo.CarritoCompras;
 import Ventanas.Ventas.PanelRealizarVenta;
@@ -28,17 +29,19 @@ public class ControladorVentanaVentas {
     private VentanaVentas ventanaVentas;
     private PanelRealizarVenta panelRealizarVenta;
     private PanelVerVentas panelVerVentas;
-    private CarritoCompras carritoCompras;
+    private final AdministradorVentas adminVentas;
+    private final CarritoCompras carritoCompras;
     
     public ControladorVentanaVentas(){
         ventanaVentas = new VentanaVentas();
         inicializarVentana();
+        adminVentas = new AdministradorVentas();
+        carritoCompras = adminVentas.getCarritoCompras();
     }
     
     void desplegarPanelRealizarVenta(){
         panelRealizarVenta = ventanaVentas.getPanelRealizarVenta();
         ventanaVentas.mostrarPanelRealizarVenta();
-        carritoCompras = new CarritoCompras();
     }
     
     void desplegarPanelVerVentas(){
@@ -68,11 +71,12 @@ public class ControladorVentanaVentas {
     private void accionarEventoBotonAgregarAlCarrito() throws SQLException, ClassNotFoundException{
         String claveArticulo;
         Articulo articulo;
-        AdministradorInventario admin = new AdministradorInventario();
         
+        AdministradorInventario adminInventario = new AdministradorInventario();
+               
         claveArticulo = JOptionPane.showInputDialog("Ingrese la clave del articulo");
-        articulo = admin.buscar(claveArticulo);
-        carritoCompras.agregarAlCarrito(articulo);
+        articulo = adminInventario.buscar(claveArticulo);
+        adminVentas.agregarAlCarrito(articulo);
         actualizarTablaCarrito();
         
     }
@@ -121,10 +125,28 @@ public class ControladorVentanaVentas {
     
     private void accionarEventoBotonEliminarDelCarrito() throws SQLException, ClassNotFoundException{
         String claveArticulo;
-        
+
         claveArticulo = JOptionPane.showInputDialog("Ingrese la clave del articulo");
-        carritoCompras.eliminarDelCarrito(claveArticulo);
+        adminVentas.eliminarDelCarrito(claveArticulo);
         actualizarTablaCarrito();
+    }
+    
+    void agregarEventoBotonRealizarVenta(){
+        panelRealizarVenta = ventanaVentas.getPanelRealizarVenta();
+        JButton botonRealizarVenta = panelRealizarVenta.getBotonRealizarVenta();
+        
+        botonRealizarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accionarBotonEventoRealizarVenta();
+ 
+            }
+        });
+        panelRealizarVenta.setBotonRealizarVenta(botonRealizarVenta);
+    }
+    
+    private void accionarBotonEventoRealizarVenta(){
+        System.out.println("Siiii");
     }
     
     private void inicializarVentana() {

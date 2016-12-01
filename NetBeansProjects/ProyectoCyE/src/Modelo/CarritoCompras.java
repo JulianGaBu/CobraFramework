@@ -23,16 +23,4 @@ public class CarritoCompras {
         return articulosEnCarrito;
     }
     
-    public void agregarAlCarrito(Articulo articulo){
-        articulosEnCarrito.add(articulo);
-    }
-    
-    public void eliminarDelCarrito(String claveArticulo){
-        for(int i=0; i<articulosEnCarrito.size(); i++){
-            if(articulosEnCarrito.get(i).getClaveArticulo().equals(claveArticulo)){
-                articulosEnCarrito.remove(i);
-            }
-        }
-    }
-    
 }

@@ -8,6 +8,7 @@ package Administradores;
 import Modelo.Datos.AccesoBDDetallesVentas;
 import Modelo.Datos.AccesoBDVentas;
 import Modelo.Articulo;
+import Modelo.CarritoCompras;
 import Modelo.Venta;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,10 +23,28 @@ public class AdministradorVentas implements Administrador {
     
     private final AccesoBDVentas accesoBDVentas;
     private final AccesoBDDetallesVentas accesoBDDetallesVentas;
+    private final CarritoCompras carritoCompras;
+    private final ArrayList<Articulo> articulosEnCarrito;
+ 
     
     public AdministradorVentas( ){
         accesoBDVentas = new AccesoBDVentas( );
         accesoBDDetallesVentas = new AccesoBDDetallesVentas( );
+        carritoCompras = new CarritoCompras();
+        articulosEnCarrito = carritoCompras.getArticulosEnCarrito();
+
+    }
+    
+     public void agregarAlCarrito(Articulo articulo){
+        articulosEnCarrito.add(articulo);
+    }
+    
+    public void eliminarDelCarrito(String claveArticulo){
+        for(int i=0; i<articulosEnCarrito.size(); i++){
+            if(articulosEnCarrito.get(i).getClaveArticulo().equals(claveArticulo)){
+                articulosEnCarrito.remove(i);
+            }
+        }
     }
 
     @Override
@@ -63,6 +82,11 @@ public class AdministradorVentas implements Administrador {
     public Object obtenerDatos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public CarritoCompras getCarritoCompras() {
+        return carritoCompras;
+    }
+    
     
     
 }

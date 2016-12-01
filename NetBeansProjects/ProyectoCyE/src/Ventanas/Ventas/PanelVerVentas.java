@@ -5,6 +5,8 @@
  */
 package Ventanas.Ventas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author rodrigopeniche
@@ -14,8 +16,16 @@ public class PanelVerVentas extends javax.swing.JPanel {
     /**
      * Creates new form PanelVerVentas
      */
+    
+    private final DefaultTableModel contenidoTablaVentas;
+    
     public PanelVerVentas() {
         initComponents();
+         contenidoTablaVentas = new DefaultTableModel( );
+        String camposTabla[] = new String[]{ "Clave de Venta", "Clave De Articulo", "Monto", "Ganancia", "Fecha",
+            "Clave de Cliente", };
+        contenidoTablaVentas.setColumnIdentifiers( camposTabla );
+        tablaVentas.setModel( contenidoTablaVentas ); 
     }
 
     /**
@@ -27,30 +37,43 @@ public class PanelVerVentas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaVentas = new javax.swing.JTable();
 
-        jLabel1.setText("test");
+        tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaVentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel1)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaVentas;
     // End of variables declaration//GEN-END:variables
 }

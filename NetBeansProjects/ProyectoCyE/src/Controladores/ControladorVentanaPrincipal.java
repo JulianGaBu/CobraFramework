@@ -128,5 +128,6 @@ public class ControladorVentanaPrincipal {
         controladorVentanaVentas.desplegarPanelRealizarVenta();
         controladorVentanaVentas.agregarEventoBotonAgregarAlCarrito();
         controladorVentanaVentas.agregarEventoBotonEliminarDelCarrito();
+        controladorVentanaVentas.agregarEventoBotonRealizarVenta();
      }
 }

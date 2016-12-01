@@ -64,6 +64,16 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
         this.botonEliminarCarrito = botonEliminarCarrito;
     }
 
+    public JButton getBotonRealizarVenta() {
+        return botonRealizarVenta;
+    }
+
+    public void setBotonRealizarVenta(JButton botonRealizarVenta) {
+        this.botonRealizarVenta = botonRealizarVenta;
+    }
+    
+    
+
     
     
     
@@ -82,6 +92,7 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
         botonAgregarCarrito = new javax.swing.JButton();
         etiquetaCarritoCompras = new javax.swing.JLabel();
         botonEliminarCarrito = new javax.swing.JButton();
+        botonRealizarVenta = new javax.swing.JButton();
 
         tablaCarritoCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +113,8 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
 
         botonEliminarCarrito.setText("Eliminar del Carrito");
 
+        botonRealizarVenta.setText("Realizar Venta");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +131,10 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
                         .addComponent(botonEliminarCarrito))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(etiquetaCarritoCompras)))
+                        .addComponent(etiquetaCarritoCompras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(botonRealizarVenta)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,7 +148,9 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregarCarrito)
                     .addComponent(botonEliminarCarrito))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonRealizarVenta)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,6 +158,7 @@ public class PanelRealizarVenta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarCarrito;
     private javax.swing.JButton botonEliminarCarrito;
+    private javax.swing.JButton botonRealizarVenta;
     private javax.swing.JLabel etiquetaCarritoCompras;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaCarritoCompras;

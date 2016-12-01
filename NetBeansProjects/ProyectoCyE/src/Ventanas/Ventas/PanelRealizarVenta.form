@@ -32,6 +32,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="etiquetaCarritoCompras" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                      <Component id="botonRealizarVenta" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
@@ -49,7 +53,9 @@
                   <Component id="botonAgregarCarrito" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonEliminarCarrito" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonRealizarVenta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,6 +95,11 @@
     <Component class="javax.swing.JButton" name="botonEliminarCarrito">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar del Carrito"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonRealizarVenta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Realizar Venta"/>
       </Properties>
     </Component>
   </SubComponents>
