@@ -36,7 +36,19 @@ public class AdministradorVentas implements Administrador {
     }
     
      public void agregarAlCarrito(Articulo articulo){
-        articulosEnCarrito.add(articulo);
+        boolean articuloEncontrado = false; 
+        
+        for(int i=0; i< articulosEnCarrito.size(); i++){
+            if(articulosEnCarrito.get(i).getClaveArticulo().equals(articulo.getClaveArticulo())){
+                articulosEnCarrito.get(i).getDetalleArticulo().setCantidad
+                (articulosEnCarrito.get(i).getDetalleArticulo().getCantidad()+1);
+                articuloEncontrado = true;
+            }
+        }
+        if(articuloEncontrado == false){
+            articulo.getDetalleArticulo().setCantidad(1);
+            articulosEnCarrito.add(articulo);
+        }
     }
     
     public void eliminarDelCarrito(String claveArticulo){
