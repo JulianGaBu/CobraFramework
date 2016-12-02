@@ -9,14 +9,14 @@ package Modelo;
  *
  * @author rodrigopeniche
  */
-public class Cliente {
+public class Empleado {
     
     private final String clave;
     private final String nombre;
     private final String telefono;
     private final String direccion;
 
-    public Cliente(String clave, String nombre, String telefono, String direccion) {
+    public Empleado(String clave, String nombre, String telefono, String direccion) {
         this.clave = clave;
         this.nombre = nombre;
         this.telefono = telefono;

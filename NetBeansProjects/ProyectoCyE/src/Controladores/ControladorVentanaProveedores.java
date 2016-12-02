@@ -7,13 +7,7 @@ package Controladores;
 
 import Administradores.AdministradorProveedores;
 import Modelo.Proveedor;
-import Ventanas.Inventario.PanelActualizarArticulo;
-import Ventanas.Proveedores.PanelActualizarProveedor;
-import Ventanas.Proveedores.PanelAgregarProveedor;
-import Ventanas.Proveedores.PanelBuscarProveedor;
-import Ventanas.Proveedores.PanelEliminarProveedor;
-import Ventanas.Proveedores.PanelVerProveedores;
-import Ventanas.Proveedores.VentanaProveedores;
+import Ventanas.Proveedores.*;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -174,6 +168,7 @@ public class ControladorVentanaProveedores {
     private void agregarEventoBotonAgregarProveedor() {
         panelAgregarProveedor = ventanaProveedores.getPanelAgregarProveedor();
         JButton botonAgregar = panelAgregarProveedor.getBotonAgregar();
+        
         botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -290,7 +285,7 @@ public class ControladorVentanaProveedores {
         try {
             actualizarTablaProveedores();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(PanelActualizarArticulo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelActualizarProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -21,6 +21,7 @@ public class ControladorVentanaPrincipal {
     private ControladorVentanaInventario controladorVentanaInventario;
     private ControladorVentanaProveedores controladorVentanaProveedores;
     private ControladorVentanaVentas controladorVentanaVentas;
+    private ControladorVentanaEmpleados controladorVentanaEmpleados;
 
     public void inicializarVentanaPrincipal() {
         ventanaPrincipal = new VentanaPrincipal();
@@ -31,6 +32,8 @@ public class ControladorVentanaPrincipal {
         agregarEventoBotonAgregarProveedor();
         agregarEventoBotonVerVentas();
         agregarEventoBotonRealizarVenta();
+        agregarEventoBotonVerEmpleados();
+        agregarEventoBotonAgregarEmpleado( );
     }
 
     public void agregarEventoBotonVerInventario() {
@@ -74,11 +77,11 @@ public class ControladorVentanaPrincipal {
     }
 
     public void agregarEventoBotonVerVentas( ){
-        JMenuItem botonVerVentar = ventanaPrincipal.getMenuItemVerVentas();
-        botonVerVentar.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+        JMenuItem botonVerVentas = ventanaPrincipal.getMenuItemVerVentas();
+        botonVerVentas.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
             inicializarPanelVerVentas();
         });
-        ventanaPrincipal.setMenuItemVerVentas(botonVerVentar);
+        ventanaPrincipal.setMenuItemVerVentas(botonVerVentas);
     }
     
     public void agregarEventoBotonRealizarVenta( ){
@@ -86,9 +89,26 @@ public class ControladorVentanaPrincipal {
         botonRealizarVenta.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
             inicializarPanelRealizarVenta();
         });
+        ventanaPrincipal.setMenuItemRealizarVenta(botonRealizarVenta);
     }
-
     
+    public void agregarEventoBotonVerEmpleados( ){
+        JMenuItem botonVerEmpleados = ventanaPrincipal.getMenuItemEmpleados();
+        botonVerEmpleados.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelVerEmpleados();
+        });
+        ventanaPrincipal.setMenuItemVerEmpleados(botonVerEmpleados);
+    }
+    
+    public void agregarEventoBotonAgregarEmpleado( ){
+        JMenuItem botonAgregarEmpleado = ventanaPrincipal.getMenuItemAgregarEmpleado();
+        botonAgregarEmpleado.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
+            inicializarPanelAgregarEmpleado();
+        });
+        ventanaPrincipal.setMenuItemAgregarEmpleado(botonAgregarEmpleado);
+    }
+    
+
     private void inicializarPanelVerInventario() throws SQLException {
         controladorVentanaInventario = new ControladorVentanaInventario();
 
@@ -130,4 +150,18 @@ public class ControladorVentanaPrincipal {
         controladorVentanaVentas.agregarEventoBotonEliminarDelCarrito();
         controladorVentanaVentas.agregarEventoBotonRealizarVenta();
      }
+     
+     public void inicializarPanelVerEmpleados(){
+         controladorVentanaEmpleados = new ControladorVentanaEmpleados();
+         controladorVentanaEmpleados.desplegarPanelVerEmpleados();
+         controladorVentanaEmpleados.agregarEventoBotonActualizarEmpleado();
+         controladorVentanaEmpleados.agregarEventoBotonBuscarEmpleado();
+         controladorVentanaEmpleados.agregarEventoBotonEliminarEmpleado();
+     }
+     
+     public void inicializarPanelAgregarEmpleado(){
+         controladorVentanaEmpleados = new ControladorVentanaEmpleados();
+         controladorVentanaEmpleados.desplegarPanelAgregarEmpleado();
+     }
+     
 }

@@ -6,8 +6,8 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
+
 
 /**
  *
@@ -18,16 +18,15 @@ public class Venta {
 
     private String clave;
     private final ArrayList<Articulo> articulosVendidos;
-    private final double montoVenta;
+    private double montoVenta;
     private double ganancia;
-    private final Calendar fecha;
-    private Cliente cliente;
+    private Date fecha;
+    private Empleado empleado;
 
   
     public Venta(ArrayList<Articulo> articulosVendidos){
         this.articulosVendidos= articulosVendidos;
-        this.fecha = new GregorianCalendar();
-        this.montoVenta = 0;
+        this.fecha = new Date();
     }
     
     public String getClave(){
@@ -46,12 +45,33 @@ public class Venta {
         return ganancia;
     }
 
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     
-    public Cliente getCliente() {
-        return cliente;
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+    
+    public void setMonto(double monto){
+        this.montoVenta= monto;
+    }
+
+    public void setGanancia(double ganancia) {
+        this.ganancia = ganancia;
+    }
+    
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
     }
     
        

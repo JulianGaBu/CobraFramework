@@ -6,9 +6,15 @@
 package Modelo.Datos;
 
 
+import Administradores.AdministradorEmpleados;
+import Administradores.AdministradorInventario;
+import Modelo.Articulo;
+import Modelo.Empleado;
 import java.sql.ResultSet;
 import Modelo.Venta;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,24 +22,123 @@ import java.sql.SQLException;
  */
 public class AccesoBDVentas extends AccesoBD {
     
-    private static final String CLAVE_STRING = "clave";
-    private static final String MONTO_STRING = "monto";
-    private static final String GANANCIA_STRING = "ganancia";
-    private static final String FECHA_STRING = "fecha";
+    private static final String CLAVE_VENTA = "claveVenta";
+    private static final String CLAVE_ARTICULO = "claveArticulo";
+    private static final String MONTO = "monto";
+    private static final String GANANCIA = "ganancia";
+    private static final String FECHA = "fecha";
+    private static final String CLAVE_EMPLEADO = "claveEmpleado";
+    private static final String TABLA_VENTAS = "ventas";
+    private static final String TABLA_DETALLES_VENTAS ="detalleventa";
     
+    public ArrayList<Venta> obtenerVentas() throws ClassNotFoundException, SQLException{
+        ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
+         conexionBD = ManejadorConexionBD.obtenerConexion( );
+ 
+         consultaBD =  COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + TABLA_VENTAS;
+         sentenciaConsulta = conexionBD.createStatement( );
+         ResultSet resultadoConsultaVentas = sentenciaConsulta.executeQuery( consultaBD );
+         
+         resultadoConsultaVentas.next();
+         //omite el primer resultado de la consulta de Ventas
+         
+         ArrayList<Venta> ventas= new ArrayList<>( );
+         Venta venta;
+
+         AdministradorEmpleados adminEmpleado = new AdministradorEmpleados();
+         
+         String claveVenta;
+         double monto;
+         double ganancia;
+         Date fecha;
+         String claveEmpleado;
+         Empleado empleado;
+         
+         while ( resultadoConsultaVentas.next()) {
+            claveVenta = resultadoConsultaVentas.getString(CLAVE_VENTA);
+            monto  = resultadoConsultaVentas.getDouble(MONTO);
+            ganancia = resultadoConsultaVentas.getDouble(GANANCIA);
+            fecha = resultadoConsultaVentas.getDate(FECHA);
+            claveEmpleado = resultadoConsultaVentas.getString(CLAVE_EMPLEADO);
+            empleado = (Empleado) adminEmpleado.buscar(claveEmpleado);
+            
+            venta = new Venta(obtenerDetallesVentas(claveVenta));
+            venta.setClave(claveVenta);
+            venta.setMonto(monto);
+            venta.setGanancia(ganancia);
+            venta.setFecha(fecha);
+            venta.setEmpleado(empleado);
+            
+            ventas.add(venta);
+        }
+        
+         ManejadorConexionBD.obtenerInstancia( ).desconectarConBD( );
+        
+         return ventas;
+    }
+    
+    public ArrayList<Articulo> obtenerDetallesVentas(String claveVenta) throws ClassNotFoundException, SQLException{
+        ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
+        conexionBD = ManejadorConexionBD.obtenerConexion( );
+        ArrayList<Articulo> articulosEnVenta = new ArrayList<>();
+        Articulo articulo;
+        AdministradorInventario adminInventario = new AdministradorInventario();
+        String claveArticulo;
+        
+        consultaBD =  COMANDO_SELECT + COMANDO_ALL + COMANDO_FROM + TABLA_DETALLES_VENTAS;
+         sentenciaConsulta = conexionBD.createStatement( );
+         ResultSet resultadoConsultaDetalleVentas = sentenciaConsulta.executeQuery( consultaBD );
+         
+         resultadoConsultaDetalleVentas.next();
+         //omite el primer resultado que es una direccion de memoria.
+         
+         while(resultadoConsultaDetalleVentas.next()){
+             claveArticulo = resultadoConsultaDetalleVentas.getString(CLAVE_ARTICULO);
+             
+             if(resultadoConsultaDetalleVentas.getString(CLAVE_VENTA).equals(claveVenta)){
+                 articulo = adminInventario.buscar(claveArticulo);
+                 articulosEnVenta.add(articulo);
+             }
+         }
+        
+        
+        ManejadorConexionBD.obtenerInstancia( ).desconectarConBD( );
+        
+        return articulosEnVenta;
+    }
     public void insertarVenta(Venta venta) throws ClassNotFoundException, SQLException{
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion( );
         
-         consultaBD = COMANDO_INSERT + COMANDO_INTO + "ventas" + COMANDO_VALUES+ "(\"" + venta.getClave( ) + "\", "
+         consultaBD = COMANDO_INSERT + COMANDO_INTO + TABLA_VENTAS + COMANDO_VALUES+ "(\"" + venta.getClave( ) + "\", "
                                                  + "\"" + venta.getMontoVenta( ) + "\", "
                                                  + "\"" + venta.getGanancia( ) + "\", "
-                                                 + "\"" + venta.getFecha( ) + "\")";
+                                                 + "\"" + venta.getFecha() + "\", "
+                                                 + "\"" + venta.getEmpleado().getClave() + "\")";
          sentenciaConsulta = conexionBD.createStatement( );
          sentenciaConsulta.executeUpdate( consultaBD );
         
          ManejadorConexionBD.obtenerInstancia( ).desconectarConBD( );
+         
+         insertarDetallesVentas(venta);
     }
+    
+    private void insertarDetallesVentas(Venta venta) throws ClassNotFoundException, SQLException{
+        ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
+        conexionBD = ManejadorConexionBD.obtenerConexion( );
+        
+        for(int i = 0; i<venta.getArticulosVendidos().size();i++){
+            consultaBD = COMANDO_INSERT + COMANDO_INTO + TABLA_DETALLES_VENTAS + COMANDO_VALUES+ "(\"" + venta.getClave( ) + "\", "
+                                                 + "\"" + venta.getArticulosVendidos().get(i).getClaveArticulo() + "\", "
+                                                 + "\"" + venta.getArticulosVendidos().get(i).getClaveArticulo() + "\")";
+            sentenciaConsulta = conexionBD.createStatement( );
+            sentenciaConsulta.executeUpdate( consultaBD );
+        }
+        
+         ManejadorConexionBD.obtenerInstancia( ).desconectarConBD( );
+    }
+    
+    
     
 //     public Venta buscarVenta( String claveVenta ) throws SQLException, ClassNotFoundException {
 //         ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );

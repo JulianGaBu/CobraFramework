@@ -47,14 +47,14 @@ public class AccesoBDProveedores extends AccesoBD {
          return proveedores;
     }
    
-   public void insertarProveedor( Proveedor proveedorAInsertar ) throws SQLException, ClassNotFoundException {
+   public void insertarProveedor( Proveedor proveedor ) throws SQLException, ClassNotFoundException {
          ManejadorConexionBD.obtenerInstancia( ).conectarConBD( );
          conexionBD = ManejadorConexionBD.obtenerConexion( );
         
-         consultaBD = COMANDO_INSERT + COMANDO_INTO + TABLA_PROVEEDORES + COMANDO_VALUES + "(\"" + proveedorAInsertar.getClave() + "\", "
-                                                          + "\"" + proveedorAInsertar.getNombre( ) + "\", "
-                                                          + "\"" + proveedorAInsertar.getTelefono( ) + "\", "
-                                                          + "\"" + proveedorAInsertar.getDireccion( ) + "\")";
+         consultaBD = COMANDO_INSERT + COMANDO_INTO + TABLA_PROVEEDORES + COMANDO_VALUES + "(\"" + proveedor.getClave() + "\", "
+                                                          + "\"" + proveedor.getNombre( ) + "\", "
+                                                          + "\"" + proveedor.getTelefono( ) + "\", "
+                                                          + "\"" + proveedor.getDireccion( ) + "\")";
          sentenciaConsulta = conexionBD.createStatement( );
          sentenciaConsulta.executeUpdate( consultaBD );
         

@@ -10,9 +10,8 @@ import Administradores.AdministradorInventario;
 import Administradores.AdministradorVentas;
 import Modelo.Articulo;
 import Modelo.CarritoCompras;
-import Ventanas.Ventas.PanelRealizarVenta;
-import Ventanas.Ventas.PanelVerVentas;
-import Ventanas.Ventas.VentanaVentas;
+import Modelo.Venta;
+import Ventanas.Ventas.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -32,6 +31,8 @@ public class ControladorVentanaVentas {
     private final AdministradorVentas adminVentas;
     private final CarritoCompras carritoCompras;
     
+    private ArrayList<Venta> ventas;
+    
     public ControladorVentanaVentas(){
         ventanaVentas = new VentanaVentas();
         inicializarVentana();
@@ -44,9 +45,11 @@ public class ControladorVentanaVentas {
         ventanaVentas.mostrarPanelRealizarVenta();
     }
     
-    void desplegarPanelVerVentas(){
+    void desplegarPanelVerVentas() throws ClassNotFoundException, SQLException{
         panelVerVentas = ventanaVentas.getPanelVerVentas();
         ventanaVentas.mostrarPenalVerVentas();
+        obtenerVentasBD();
+        llenarTablaVentas(ventas);
     }
     
     void agregarEventoBotonAgregarAlCarrito() {
@@ -79,6 +82,19 @@ public class ControladorVentanaVentas {
         adminVentas.agregarAlCarrito(articulo);
         actualizarTablaCarrito();
         
+    }
+    
+    private void llenarTablaVentas(ArrayList<Venta> ventas) throws ClassNotFoundException, SQLException{
+//        int articulosVendidos = adminVentas.obtenerTotalArticulosVendidos();
+//        
+//        for(int i = 0; i<articulosVendidos; i++){
+//            panelVerVentas.getContenidoTablaVentas().addRow(new Object[]{ventas.get(i).getClave(),
+//                                                            ventas.get(i)});
+//        }
+    }
+    
+    private void obtenerVentasBD(){
+        ventas = (ArrayList<Venta>) adminVentas.obtenerDatos();
     }
     
     private void llenarTablaCarrito(CarritoCompras carritoCompras) throws SQLException, ClassNotFoundException {
@@ -146,7 +162,11 @@ public class ControladorVentanaVentas {
     }
     
     private void accionarBotonEventoRealizarVenta(){
-        System.out.println("Siiii");
+        String claveVenta;
+        String claveCliente;
+        claveVenta = JOptionPane.showInputDialog("Ingrese la clave de la venta");
+        claveCliente = JOptionPane.showInputDialog("Ingrese la clave del empleado");
+        adminVentas.realizarVenta(claveVenta, claveCliente);
     }
     
     private void inicializarVentana() {

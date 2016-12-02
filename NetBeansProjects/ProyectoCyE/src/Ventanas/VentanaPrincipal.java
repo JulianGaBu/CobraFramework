@@ -27,12 +27,15 @@ public class VentanaPrincipal extends JFrame {
     private JMenu menuInventario;
     private JMenu menuProveedores;
     private JMenu menuVentas;
+    private JMenu menuClientes;
     private JMenuItem menuItemVerInventario;
     private JMenuItem menuItemAgregarArticulo;
     private JMenuItem menuItemVerProveedores;
     private JMenuItem menuItemAgregarProveedor;
     private JMenuItem menuItemVerVentas;
     private JMenuItem menuItemRealizarVenta;
+    private JMenuItem menuItemAgregarEmpleado;
+    private JMenuItem menuItemVerEmpleados;
     private InputStream imagenDeFondo;
     private static ControladorVentanaPrincipal controladorVentanaPrincipal;
 
@@ -43,12 +46,15 @@ public class VentanaPrincipal extends JFrame {
         menuInventario = new javax.swing.JMenu( );
         menuProveedores = new javax.swing.JMenu( );
         menuVentas = new javax.swing.JMenu( );
+        menuClientes = new javax.swing.JMenu( );
         menuItemAgregarArticulo = new javax.swing.JMenuItem( );
         menuItemVerProveedores = new javax.swing.JMenuItem( );
         menuItemAgregarProveedor = new javax.swing.JMenuItem( );
         menuItemVerInventario = new javax.swing.JMenuItem( );
         menuItemVerVentas = new javax.swing.JMenuItem( );
         menuItemRealizarVenta = new javax.swing.JMenuItem( );
+        menuItemAgregarEmpleado = new javax.swing.JMenuItem( );
+        menuItemVerEmpleados = new javax.swing.JMenuItem( );
         
         cargarImagenDeFondo();
         
@@ -93,6 +99,12 @@ public class VentanaPrincipal extends JFrame {
         getMenuItemRealizarVenta().setText( "Realizar Venta" );
         getMenuVentas().add(getMenuItemRealizarVenta());
         getBarraMenuPrincipal().add(getMenuVentas());
+        getMenuEmpleados().setText( "Empleados" );
+        getMenuItemEmpleados().setText( "Ver" );
+        getMenuEmpleados().add(getMenuItemEmpleados());
+        getMenuItemAgregarEmpleado().setText( "Agregar" );
+        getMenuEmpleados().add(getMenuItemAgregarEmpleado());
+        getBarraMenuPrincipal().add(getMenuEmpleados());
         setJMenuBar(getBarraMenuPrincipal());
     }
     
@@ -256,6 +268,31 @@ public class VentanaPrincipal extends JFrame {
     public void setMenuItemRealizarVenta(JMenuItem menuItemRealizarVenta) {
         this.menuItemRealizarVenta = menuItemRealizarVenta;
     }
-      
+
+    public JMenuItem getMenuItemAgregarEmpleado() {
+        return menuItemAgregarEmpleado;
+    }
+
+    public JMenuItem getMenuItemEmpleados() {
+        return menuItemVerEmpleados;
+    }
+
+    public JMenu getMenuEmpleados() {
+        return menuClientes;
+    }
+
+    public void setMenuEmpleados(JMenu menuClientes) {
+        this.menuClientes = menuClientes;
+    }
+
+    public void setMenuItemAgregarEmpleado(JMenuItem menuItemAgregarEmpleado) {
+        this.menuItemAgregarEmpleado = menuItemAgregarEmpleado;
+    }
+
+    public void setMenuItemVerEmpleados(JMenuItem menuItemVerEmpleado) {
+        this.menuItemVerEmpleados = menuItemVerEmpleado;
+    }
+    
+    
      
  }

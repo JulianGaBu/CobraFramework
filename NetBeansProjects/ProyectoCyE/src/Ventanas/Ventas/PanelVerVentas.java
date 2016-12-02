@@ -70,7 +70,10 @@ public class PanelVerVentas extends javax.swing.JPanel {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public DefaultTableModel getContenidoTablaVentas() {
+        return contenidoTablaVentas;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
