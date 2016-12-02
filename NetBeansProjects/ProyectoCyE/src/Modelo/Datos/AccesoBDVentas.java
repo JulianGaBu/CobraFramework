@@ -130,7 +130,7 @@ public class AccesoBDVentas extends AccesoBD {
         for(int i = 0; i<venta.getArticulosVendidos().size();i++){
             consultaBD = COMANDO_INSERT + COMANDO_INTO + TABLA_DETALLES_VENTAS + COMANDO_VALUES+ "(\"" + venta.getClave( ) + "\", "
                                                  + "\"" + venta.getArticulosVendidos().get(i).getClaveArticulo() + "\", "
-                                                 + "\"" + venta.getArticulosVendidos().get(i).getClaveArticulo() + "\")";
+                                                 + "\"" + venta.getArticulosVendidos().get(i).getDetalleArticulo().getCantidad() + "\")";
             sentenciaConsulta = conexionBD.createStatement( );
             sentenciaConsulta.executeUpdate( consultaBD );
         }

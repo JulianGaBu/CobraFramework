@@ -26,7 +26,7 @@ public class Venta {
   
     public Venta(ArrayList<Articulo> articulosVendidos){
         this.articulosVendidos= articulosVendidos;
-        this.fecha = new Date();
+        this.fecha = new Date() {};
     }
     
     public String getClave(){

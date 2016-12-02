@@ -79,7 +79,11 @@ public class ControladorVentanaPrincipal {
     public void agregarEventoBotonVerVentas( ){
         JMenuItem botonVerVentas = ventanaPrincipal.getMenuItemVerVentas();
         botonVerVentas.addActionListener( ( java.awt.event.ActionEvent evt ) -> {
-            inicializarPanelVerVentas();
+            try {
+                inicializarPanelVerVentas();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(ControladorVentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         ventanaPrincipal.setMenuItemVerVentas(botonVerVentas);
     }
@@ -138,7 +142,7 @@ public class ControladorVentanaPrincipal {
         controladorVentanaProveedores.desplegarPanelAgregarProveedor();
     }
 
-     private void inicializarPanelVerVentas( ){
+     private void inicializarPanelVerVentas( ) throws ClassNotFoundException, SQLException{
         controladorVentanaVentas = new ControladorVentanaVentas();
         controladorVentanaVentas.desplegarPanelVerVentas();
      }
