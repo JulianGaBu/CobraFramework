@@ -8,6 +8,7 @@ package DataBaseAdmin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,8 +27,45 @@ public class DatabaseConnection {
     private String password;
 
     
+    // verificar que se puedan modificar el nombre de usuario y contrasena
+    public void createDatabase(String dbName, String username, String password){
+        getConfigFileInfo();
+        
+        String query = " CREATE DATABASE " + dbName;
+        Statement statement;
+        
+        try {
+            Class.forName(driverName);
+            connection = DriverManager.getConnection(port + "", "root", "");
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+    }
+   
+   public void dropDatabase(String dbName){
+        try {
+            getConfigFileInfo();
+            
+            String query = "DROP DATABASE " + dbName;
+            Statement statement;
+            
+            Class.forName(driverName);
+            connection = DriverManager.getConnection(port, "root", "");
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+    
+    
     public Connection getConnection() {
         
+        getConfigFileInfo();
         getDatabaseInfo();
         
         try {
@@ -42,11 +80,14 @@ public class DatabaseConnection {
     }
     
     private void getDatabaseInfo(){
-        driverName = ConfigFile.getDriverName();
-        port = ConfigFile.getPort();
         dbName = ConfigFile.getDBName();
         username = ConfigFile.getUserName();
         password = ConfigFile.getPassword();
+    }
+    
+    private void getConfigFileInfo(){
+        driverName = ConfigFile.getDriverName();
+        port = ConfigFile.getPort();
     }
     
     

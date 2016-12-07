@@ -10,27 +10,17 @@ import javax.swing.JOptionPane;
 
 public class DataAccessObject extends MySQLCommands {
 
-    DatabaseConnection dbConnection;
+    private final DatabaseConnection dbConnection;
     private final Connection connection;
     private String query;
     private Statement statement;
+
      
     public DataAccessObject(){
         dbConnection = new DatabaseConnection();
         connection = dbConnection.getConnection();
     }
 
-
-    public void createDB(String dbName) {
-        try {
-            query = CREATE_COMMAND + DATABASE_COMMAND + dbName;
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + dbName + " de forma exitosa");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public void createTable(String tableName) {
         try {
