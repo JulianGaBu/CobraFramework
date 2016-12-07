@@ -30,7 +30,7 @@ public class DatabaseConnection {
     // verificar que se puedan modificar el nombre de usuario y contrasena
     public void createDatabase(String dbName, String username, String password){
         getConfigFileInfo();
-        
+         
         String query = " CREATE DATABASE " + dbName;
         Statement statement;
         
@@ -43,6 +43,8 @@ public class DatabaseConnection {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ConfigFile.writeDBNameInFile(dbName, username, password);
      
     }
    
@@ -60,6 +62,8 @@ public class DatabaseConnection {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ConfigFile.deleteDBNameInInFile(dbName);
    }
     
     

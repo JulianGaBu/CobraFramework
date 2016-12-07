@@ -7,8 +7,14 @@ package DataBaseAdmin;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -104,4 +110,56 @@ public class ConfigFile {
         return line;
     }
     
+
+    
+    
+    static void writeDBNameInFile(String dbName, String username, String password){
+        PrintWriter fileOut;
+        
+        try{
+            fileOut= new PrintWriter(new FileWriter("databases.txt", true));
+            fileOut.println(dbName + " " + username + " " + password);
+            fileOut.close();
+         }
+        catch(IOException e)
+        {
+            System.out.println("Error en el archivo");
+        }
+   }
+    
+   static void deleteDBNameInInFile(String dbName){
+       PrintWriter fileOut;
+       Scanner configFile;
+        String line = null;
+        StringTokenizer tokenizer;
+        ArrayList<String> lines = new ArrayList<>();
+        
+        try{
+            configFile= new Scanner(new FileReader("databases.txt"));
+            while(configFile.hasNextLine()){
+                line = configFile.nextLine();
+                tokenizer = new StringTokenizer(line);
+                if(!tokenizer.nextToken().equals(dbName)){
+                    lines.add(line);
+                }
+            }
+            
+            fileOut= new PrintWriter(new FileWriter("databases.txt", false));
+            for(int i = 0; i<lines.size(); i++){
+                fileOut.println(lines.get(i));
+            }
+            
+            fileOut.close();
+            
+        }
+        catch(FileNotFoundException ex)
+        {
+            System.out.println("Config file not found");
+        } catch (IOException ex) {
+            Logger.getLogger(ConfigFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+   }
 }
