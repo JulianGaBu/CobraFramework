@@ -56,19 +56,9 @@ public class ConfigFile {
         return port;
     }
     
-    static String getDBName(){
-        String dbName;
-        String line = getFileLine();
-        StringTokenizer tokenizer = new StringTokenizer(line);
-        
-        dbName = tokenizer.nextToken();
-               
-        return dbName;
-    }
-    
-    static String getUserName(){
+    static String getUserName(String dbName){
         String username;
-        String line = getFileLine();
+        String line = getFileLine(dbName);
         StringTokenizer tokenizer = new StringTokenizer(line);
         
         tokenizer.nextToken();
@@ -77,9 +67,9 @@ public class ConfigFile {
         return username;
     }
     
-    static String getPassword(){
+    static String getPassword(String dbName){
         String password;
-        String line = getFileLine();
+        String line = getFileLine(dbName);
         StringTokenizer tokenizer = new StringTokenizer(line);
               
         if(tokenizer.countTokens() == 2){
@@ -94,13 +84,21 @@ public class ConfigFile {
         return password;
     }
     
-    private static String getFileLine(){
+    private static String getFileLine(String dbName){
         Scanner configFile;
         String line = null;
+        StringTokenizer tokenizer;
         
         try{
             configFile= new Scanner(new FileReader("databases.txt"));
-            line = configFile.nextLine();
+            while(configFile.hasNextLine()){
+                line = configFile.nextLine();
+                tokenizer = new StringTokenizer(line);
+                if(tokenizer.nextToken().equals(line)){
+                    return line;
+                }
+                
+            }
         }
         catch(FileNotFoundException ex)
         {
@@ -118,7 +116,7 @@ public class ConfigFile {
         
         try{
             fileOut= new PrintWriter(new FileWriter("databases.txt", true));
-            fileOut.println(dbName + " " + username + " " + password);
+            fileOut.print(dbName + " " + username + " " + password);
             fileOut.close();
          }
         catch(IOException e)

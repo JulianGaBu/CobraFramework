@@ -22,11 +22,13 @@ public class DatabaseConnection {
     
     private String driverName;
     private String port;
-    private String dbName;
+    private final String dbName;
     private String username;
     private String password;
 
-    
+    public DatabaseConnection(String dbName){
+        this.dbName = dbName;
+    }
     // verificar que se puedan modificar el nombre de usuario y contrasena
     public void createDatabase(String dbName, String username, String password){
         getConfigFileInfo();
@@ -84,9 +86,8 @@ public class DatabaseConnection {
     }
     
     private void getDatabaseInfo(){
-        dbName = ConfigFile.getDBName();
-        username = ConfigFile.getUserName();
-        password = ConfigFile.getPassword();
+        username = ConfigFile.getUserName(dbName);
+        password = ConfigFile.getPassword(dbName);
     }
     
     private void getConfigFileInfo(){

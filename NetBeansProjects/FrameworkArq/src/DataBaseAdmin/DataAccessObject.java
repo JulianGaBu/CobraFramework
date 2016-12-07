@@ -16,8 +16,8 @@ public class DataAccessObject extends MySQLCommands {
     private Statement statement;
 
      
-    public DataAccessObject(){
-        dbConnection = new DatabaseConnection();
+    public DataAccessObject(String tableName){
+        dbConnection = new DatabaseConnection(tableName);
         connection = dbConnection.getConnection();
     }
 

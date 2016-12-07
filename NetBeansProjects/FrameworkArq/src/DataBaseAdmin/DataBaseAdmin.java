@@ -13,7 +13,9 @@ public class DataBaseAdmin {
     
     public static void main(String[] args) {
 //        DataAccessObject dao = new DataAccessObject();
-         DatabaseConnection db = new DatabaseConnection();
+       DataAccessObject dao = new DataAccessObject("roli");
+       
+               
        
     }   
 }
