@@ -22,7 +22,10 @@ import java.util.logging.Logger;
  */
 public class ConfigFile {
     
-    
+    /**
+     * 
+     * @return 
+     */
     static String getDriverName(){
         Scanner configFile;
         String driverName = null;
@@ -111,7 +114,7 @@ public class ConfigFile {
 
     
     
-    static void writeDBNameInFile(String dbName, String username, String password){
+   static void writeDBNameInFile(String dbName, String username, String password){
         PrintWriter fileOut;
         
         try{
@@ -126,8 +129,8 @@ public class ConfigFile {
    }
     
    static void deleteDBNameInInFile(String dbName){
-       PrintWriter fileOut;
-       Scanner configFile;
+        PrintWriter fileOut;
+        Scanner configFile;
         String line = null;
         StringTokenizer tokenizer;
         ArrayList<String> lines = new ArrayList<>();
@@ -156,8 +159,6 @@ public class ConfigFile {
         } catch (IOException ex) {
             Logger.getLogger(ConfigFile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+               
    }
 }

@@ -24,6 +24,10 @@ public class MySQLCommands {
     static final String DELETE_COMMAND = " DELETE  ";
     static final String WHERE_COMMAND = " WHERE  ";
     static final String ALTER_COMMAND = " ALTER ";
+    static final String UPDATE_COMMAND = " UPDATE ";
+    static final String SET_COMMAND  = " SET ";
     static final String PRIMARY_KEY_COMMAND = " PRIMARY KEY ";
     static final String FOREIGN_KEY_COMMAND = " FOREIGN KEY ";    
+    static final String SHOW_COMMAND = " SHOW ";
+    static final String COLUMNS_COMMAND = " COLUMNS ";
 }

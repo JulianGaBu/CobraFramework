@@ -22,14 +22,16 @@ public class DatabaseConnection {
     
     private String driverName;
     private String port;
-    private final String dbName;
     private String username;
     private String password;
 
-    public DatabaseConnection(String dbName){
-        this.dbName = dbName;
-    }
     // verificar que se puedan modificar el nombre de usuario y contrasena
+    /**
+     * 
+     * @param dbName database to create
+     * @param username for the database
+     * @param password to access the database
+     */
     public void createDatabase(String dbName, String username, String password){
         getConfigFileInfo();
          
@@ -49,7 +51,10 @@ public class DatabaseConnection {
         ConfigFile.writeDBNameInFile(dbName, username, password);
      
     }
-   
+   /**
+    * 
+    * @param dbName database to delete
+    */
    public void dropDatabase(String dbName){
         try {
             getConfigFileInfo();
@@ -69,10 +74,10 @@ public class DatabaseConnection {
    }
     
     
-    public Connection getConnection() {
+    public Connection getConnection(String dbName) {
         
         getConfigFileInfo();
-        getDatabaseInfo();
+        getDatabaseInfo(dbName);
         
         try {
             Class.forName(driverName);
@@ -85,7 +90,7 @@ public class DatabaseConnection {
         return connection;
     }
     
-    private void getDatabaseInfo(){
+    private void getDatabaseInfo(String dbName){
         username = ConfigFile.getUserName(dbName);
         password = ConfigFile.getPassword(dbName);
     }
