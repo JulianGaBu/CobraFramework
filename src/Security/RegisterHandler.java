@@ -1,6 +1,7 @@
 package Security;
 
 import Exceptions.NoSuchUserException;
+import Exceptions.PasswordSecurityException;
 import Exceptions.UserException;
 
 /**
@@ -8,10 +9,16 @@ import Exceptions.UserException;
  */
 public class RegisterHandler {
     User user;
-    PasswordSecurityManager PSM;
+    PasswordSecurityManager passManager;
     DB db;
 
+    public RegisterHandler() {
+        this.passManager = new PasswordSecurityManager();
+    }
 
+    public RegisterHandler(int passwordLevel) {
+        this.passManager = new PasswordSecurityManager(passwordLevel);
+    }
 
     /**
      * Creates a basic <code>User</code> object from username and password
@@ -32,13 +39,17 @@ public class RegisterHandler {
     }
 
     /**
-     * Registers a user in the database
+     * Registers a user in the database (encripts the password sent)
      * @param username the username of the new user
-     * @param password the password of the new user (encrypted)
+     * @param password the password of the new user (UNencrypted)
      * @throws UserException of the username is taken
      */
-    public void registerUser(String username, String password) throws UserException {
-        user = createUser(username,password);
-        db.addUser(user);
+    public void registerUser(String username, String password) throws UserException, PasswordSecurityException {
+        if(username==null) throw new UserException("No username specified!");
+        if(passManager.isSecure(password)){
+            String encryptedPassword = MD5.encrypt(password);
+            user = createUser(username,encryptedPassword);
+            db.addUser(user);
+        }
     }
 }

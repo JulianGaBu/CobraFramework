@@ -36,4 +36,8 @@ public class ProfileHandler {
     public User getUser() {
         return user;
     }
+
+    public String getPermisos() {
+        return permisos;
+    }
 }

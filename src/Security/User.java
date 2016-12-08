@@ -6,10 +6,18 @@ package Security;
 public class User {
     String username;
     String password;
+    Permissions permissions;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.permissions = new Permissions();
+    }
+
+    public User(String username, String password, Permissions permissions) {
+        this.username = username;
+        this.password = password;
+        this.permissions = permissions;
     }
 
     public String getUsername() {
