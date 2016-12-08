@@ -1,12 +1,15 @@
 package DataBaseAdmin;
 
+import ORMapping.ORMapping;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public class DataAccessObject extends MySQLCommands {
 
@@ -15,101 +18,232 @@ public class DataAccessObject extends MySQLCommands {
     private String query;
     private Statement statement;
 
-     
-    public DataAccessObject(String tableName){
-        dbConnection = new DatabaseConnection(tableName);
-        connection = dbConnection.getConnection();
+    /**
+     *
+     * @param dbName db to handle
+     */
+    public DataAccessObject(String dbName){
+        dbConnection = new DatabaseConnection();
+        connection = dbConnection.getConnection(dbName);
     }
 
+    /**
+     *
+     * @param tableName table to create
+     * @param attributes set of attributes with datatype and constraints
+     * specifications
+     * e.g. name varchar(5) PRIMARY KEY
+     * @throws java.sql.SQLException
+     *
+     *
 
-    public void createTable(String tableName) {
-        try {
-                 query = CREATE_COMMAND + TABLE_COMMAND + tableName + ""
-                    + "(claveVenta int(5) NOT NULL, "
-                    + "claveEmpleado varchar(5) NOT NULL,"
-                    + "monto double NOT NULL,"
-                    + "ganancia double NOT NULL,"
-                    + "fecha int(11) NOT NULL)"
-                    + "ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-                    
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-            dbConnection.closeConnection();
-            System.out.println("tabla creada exitosamente");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+     */
+    public void createTable(String tableName, ArrayList<String> attributes) throws SQLException {
+
+        String fields = generateTableAtributesQuery(attributes);
+
+        query = CREATE_COMMAND + TABLE_COMMAND + tableName + fields;
+        System.out.println(fields);
+        statement = connection.createStatement();
+        statement.executeUpdate(query);
+        dbConnection.closeConnection();
+        System.out.println("tabla creada exitosamente");
+
+    }
+
+    private String generateTableAtributesQuery(ArrayList<String> atributes){
+       String fields = "(";
+
+        for (int i = 0; i < atributes.size(); i++) {
+            if (!(i == atributes.size() - 1)) {
+                fields += atributes.get(i) + ", ";
+            } else {
+                fields += atributes.get(i) + ")";
+            }
         }
+
+        return fields;
+    }
+    /**
+     *
+     * @param tableName table to delete
+     * @throws SQLException
+     */
+    public void dropTable(String tableName) throws SQLException {
+        query = DROP_COMMAND + TABLE_COMMAND + tableName;
+        statement = connection.createStatement();
+        statement.executeUpdate(query);
+        dbConnection.closeConnection();
+        System.out.println("tabla eliminada exitosamente");
+    }
+    /**
+     * 
+     * @param tableName table to insert the data into
+     * @param values  set values to insert into the table
+     * @throws SQLException 
+     */
+    public void insertData(String tableName, ArrayList<String> values) throws SQLException {
+
+        String fields = generateFieldValuesQuery(values);
+
+        query = INSERT_COMMAND + INTO_COMMAND + tableName + VALUES_COMMAND + fields;
+        System.out.println(query);
+
+        statement = connection.createStatement();
+        statement.executeUpdate(query);
+        dbConnection.closeConnection();
+        System.out.println("datos almacenados de forma exitosa");
+
     }
     
-    public void dropTable(String tableName){
-        try {
-            query = DROP_COMMAND + TABLE_COMMAND + tableName;
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-            dbConnection.closeConnection();
-            System.out.println("tabla eliminada exitosamente");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+    private String generateFieldValuesQuery(ArrayList<String> values){
+        String fields = "(";
+       
+        for (int i = 0; i < values.size(); i++) {            
+            if (!(i == values.size() - 1)) {
+                if(isNumeric(values.get(i))){
+                fields +=  + Integer.parseInt(values.get(i)) + ", ";
+                }
+                else{
+                fields += "\"" + values.get(i) + "\", ";
+                }
+            } 
+            else {
+               
+                if(isNumeric(values.get(i))){
+                    fields +=  + Integer.parseInt(values.get(i)) + ")";
+                }
+                else{
+                    fields += "\"" + values.get(i) + "\")";
+                }
+            }
         }
+        
+        return fields;
     }
     
-    public void insertData(String tableName, String ID, String name, String lastname, String age, String gender) {
-        try {
-            query = INSERT_COMMAND + INTO_COMMAND + VALUES_COMMAND + "("
-                    + "\"" + ID + "\", "
-                    + "\"" + name + "\", "
-                    + "\"" + lastname + "\", "
-                    + "\"" + age + "\", "
-                    + "\"" + gender + "\")";
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
-        }
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");  
     }
+    
+    /**
+     * 
+     * @param tableName table to delete data from
+     * @param rowIdentifierValue specific value from the row to delete
+     * @throws java.sql.SQLException
+     */
+    public void deleteRecord(String tableName, String rowIdentifierValue) throws SQLException {
+        String tableIdentifier = getTableIdentifier(tableName);
+        query = DELETE_COMMAND + FROM_COMMAND + tableName + WHERE_COMMAND + tableIdentifier + " = \'" + rowIdentifierValue + "\'";
+        
+        statement = connection.createStatement();
+        statement.executeUpdate(query);
+        
+        dbConnection.closeConnection();
+        System.out.println("Registro eliminado exitosamente");
+    }
+    
+    private String getTableIdentifier(String tableName) throws SQLException {
+        String tableIdentifier;
 
-    public void getValues(String tableName) {
+        query = SELECT_COMMAND + ALL_COMMAND + FROM_COMMAND + tableName;
+        statement = connection.createStatement();
+
+        ResultSet resultSet;
+        resultSet = statement.executeQuery(query);
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+        tableIdentifier = resultSetMetaData.getColumnName(1);
+
+        return tableIdentifier;
+    }
+    
+    /**
+     * 
+     * @param tableName table where the record will be searched for
+     * @param rowIdentifierValue specific value from the row to search for
+     * @return the row requested which is a  Map<String, String>
+     * @throws SQLException 
+     */
+    public Map<String, String> searchRecord(String tableName, String rowIdentifierValue) throws SQLException {
+        String tableIdentifier = getTableIdentifier(tableName);
+        Map<String, String> object;
+
+        query = SELECT_COMMAND + ALL_COMMAND + FROM_COMMAND + tableName + WHERE_COMMAND
+                + tableIdentifier + " = \'" + rowIdentifierValue + "\'";
+
+        statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        resultSet.next();
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+        ArrayList<String> columnNames = getColumnNames(resultSetMetaData);
+        ORMapping map = new ORMapping();
+        map.createObject(columnNames, resultSet);
+        object = map.getObject();
+        
+        dbConnection.closeConnection();
+              
+        return object;
+
+    }
+    /**
+     * 
+     * @param tableName table to retrieve
+     * @return the table requested, which is a ArrayList<Map<String, String>>
+     * @throws SQLException 
+     */
+    public ArrayList<Map<String, String>> getTuples(String tableName) throws SQLException {
+        ArrayList<Map<String, String>> data = new ArrayList<>();
+        Map<String, String> object;
         try {
             query = SELECT_COMMAND + ALL_COMMAND + FROM_COMMAND + tableName;
             statement = connection.createStatement();
+
             ResultSet resultSet;
             resultSet = statement.executeQuery(query);
+            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+            ArrayList<String> columnNames = getColumnNames(resultSetMetaData);
+            ORMapping map;
 
             while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getString("ID") + " "
-                        + "Nombre: " + resultSet.getString("Nombre") + " " + resultSet.getString("Apellido") + " "
-                        + "Edad: " + resultSet.getString("Edad") + " "
-                        + "Sexo: " + resultSet.getString("Sexo"));
+                map = new ORMapping();
+                map.createObject(columnNames, resultSet);
+                object =  map.getObject();
+                data.add(object);                
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
+            System.out.println("Data retrieving error");
         }
-    }
 
-    public void deleteRecord(String tableName, String ID) {
-        try {
-            query = DELETE_COMMAND + FROM_COMMAND + tableName + WHERE_COMMAND + " ID = \"" + ID + "\"";
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");
-        }
+        return data;
     }
     
-    public void alterTable(String tableName) throws SQLException{
-        query = "alter table " 
-                    + tableName 
-                + " ADD CONSTRAINT ventas_ibfk_1 FOREIGN KEY (ClaveEmpleado) REFERENCES empleados (Clave);";
-                
-             
+    private ArrayList<String> getColumnNames(ResultSetMetaData resultSetMetaData) throws SQLException{
+         int columnsNumber = resultSetMetaData.getColumnCount();
+         ArrayList<String> columnNames = new ArrayList<>();
+         
+         for(int i = 1; i<=columnsNumber; i++){
+             columnNames.add(resultSetMetaData.getColumnName(i));
+         }
+        
+        return columnNames;
+    }
+    
+    public void updateRecord(String tableName, String rowIdentifierValue, ArrayList<String> attributes) throws SQLException{
+        String fields;
+        fields = generateUpdateFieldValuesQuery(attributes);
+        //query = UPDATE_COMMAND + tableName + ;
         statement = connection.createStatement();
-        statement.executeUpdate(query);
+        statement.executeQuery(query);
+         
     }
     
+    private String generateUpdateFieldValuesQuery(ArrayList<String>attributes){
+        return null;
+    }
+
 
 }
