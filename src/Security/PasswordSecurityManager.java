@@ -5,15 +5,10 @@ import Exceptions.PasswordSecurityException;
 /**
  * Created by Julian on 06/12/2016.
  */
-public class PasswordSecurityManager extends PasswordSecurityLevels{
+public class PasswordSecurityManager implements PasswordSecurityLevels{
     final int MIN_PASS_LEVEL;
-    String username;
-    User user;
-
-    DB db;
 
     public PasswordSecurityManager(){
-        db = new DB();
         MIN_PASS_LEVEL = ANY_PASSWORD;
     }
 
@@ -22,7 +17,6 @@ public class PasswordSecurityManager extends PasswordSecurityLevels{
      * @param level the minimum security level
      */
     public PasswordSecurityManager(int level){
-        db = new DB();
         MIN_PASS_LEVEL = level;
     }
 

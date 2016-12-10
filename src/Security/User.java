@@ -4,27 +4,35 @@ package Security;
  * Created by Julian on 06/12/2016.
  */
 public class User {
-    String username;
-    String password;
-    Permissions permissions;
+    private String username;
+    private String password;
+    private int permissions;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.permissions = new Permissions();
+    User(){
     }
 
-    public User(String username, String password, Permissions permissions) {
+    User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.permissions = permissions;
+        this.permissions = Permissions.getPermissionlevel(this);
     }
 
-    public String getUsername() {
+    User(String username, String password, Permissions permissions) {
+        this.username = username;
+        this.password = password;
+        this.permissions = Permissions.getPermissionlevel(this);
+    }
+
+    String getUsername() {
         return username;
     }
 
-    public String getPassword() {
+    String getPassword() {
         return password;
+    }
+
+    int getPermissions() {
+        this.permissions = Permissions.getPermissionlevel(this);
+        return permissions;
     }
 }

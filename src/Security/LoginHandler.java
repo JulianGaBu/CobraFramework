@@ -7,11 +7,8 @@ import Exceptions.UserException;
  * Created by Julian on 06/12/2016.
  */
 public class LoginHandler {
-    final int MAX_ATTEMPTS;
-    int attempt;
-    User user;
-    ProfileHandler accHandler;
-    DB db;
+    private final int MAX_ATTEMPTS;
+    private int attempt;
 
     /**
      * Constructor to create a login verifier with a maximum number of attempts
@@ -19,8 +16,6 @@ public class LoginHandler {
      */
     public LoginHandler(int attempts){
         this.MAX_ATTEMPTS = attempts;
-        db = new DB();
-        accHandler = new ProfileHandler();
     }
 
     /**
@@ -32,17 +27,17 @@ public class LoginHandler {
     public boolean verifyUser(String user) throws LoginAttemptException {
         try {
             this.attempt = 0;
-            return accHandler.isRegistered(user);
+            boolean what = ProfileHandler.isRegistered(user);
+            return what;
         } catch (UserException ure) {
-            ure.printStackTrace();
-            throw new LoginAttemptException(ure);
+            throw new LoginAttemptException("User doesnt exist");
         }
     }
 
     /**
      * Checks if the password exists
      * @param pass
-     * @return <code>true</code> if
+     * @return <code>true</code> if password is correct
      * @throws LoginAttemptException if the password is wrong or if the user is out of attempts
      */
     public boolean checkPassword(String pass) throws LoginAttemptException {
@@ -60,14 +55,13 @@ public class LoginHandler {
         }
 
         try {
-            if(accHandler.isUserPassword(encryptedPass)){
+            if(ProfileHandler.isUserPassword(encryptedPass)){
                 return true;
             } else {
                 throw new LoginAttemptException("Incorrect password. " + (MAX_ATTEMPTS - attempt) + " attempts remaining");
             }
         } catch (UserException NoUser) { //when a password attempt was sent without specifying username
-            NoUser.printStackTrace();
-            throw new LoginAttemptException(NoUser);
+            throw new LoginAttemptException();
         }
     }
 }

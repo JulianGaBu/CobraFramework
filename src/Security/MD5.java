@@ -10,7 +10,7 @@ public class MD5 {
 
     public static String encrypt(String message) {
         try {
-            MessageDigest msgd = MessageDigest.getInstance("Security.MD5");
+            MessageDigest msgd = MessageDigest.getInstance("MD5");
             byte[] bytes = msgd.digest(message.getBytes());
             StringBuilder strbCadenaMD5 = new StringBuilder(2 * bytes.length);
             for (int i = 0; i < bytes.length; i++) {

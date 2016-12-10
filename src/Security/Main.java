@@ -1,6 +1,9 @@
 package Security;
 
+import DataBaseAdmin.DatabaseConnection;
 import Exceptions.LoginAttemptException;
+import Exceptions.PasswordSecurityException;
+import Exceptions.UserException;
 
 import java.util.Scanner;
 
@@ -12,25 +15,46 @@ public class Main {
     static String password;
     static LoginHandler login;
     static PasswordSecurityManager passManager;
+    static RegisterHandler regH;
 
     public static void main(String[] args) {
+        DB.populateUsers();
         login = new LoginHandler(3);
         boolean stop = false;
         Scanner scanner = new Scanner(System.in);
+        regH = new RegisterHandler(1);
+
         try {
-            while (!stop) {
+            System.out.println("Introduzca su nombre de usuario: ");
+            usuario = scanner.nextLine();
+            System.out.println("Introduzca su contraseña: ");
+            password = scanner.nextLine();
+            regH.registerUser(usuario, password);
+        } catch (PasswordSecurityException e) {
+            e.printStackTrace();
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+
+        while (!stop) {
+            try {
                 System.out.println("Introduzca su nombre de usuario: ");
                 usuario = scanner.nextLine();
                 stop = login.verifyUser(usuario);
+            } catch (LoginAttemptException e) {
+                e.printStackTrace();
             }
-            stop = false;
-            while (!stop) {
+        }
+        stop = false;
+        while (!stop) {
+            try {
                 System.out.println("Introduzca su contraseña: ");
                 password = scanner.nextLine();
-                stop = login.checkPassword(password);
+                login.checkPassword(password);
+                stop = true;
+            } catch (LoginAttemptException e) {
+                e.printStackTrace();
             }
-        } catch (LoginAttemptException e) {
-            e.printStackTrace();
         }
     }
 
